@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+@await Component.InvokeAsync("_AdminHeadComponentPartial")
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex overflow-hidden">
+    @await Component.InvokeAsync("_AdminSidebarComponentPartial")
+    <main class="flex-1 ml-64 flex flex-col h-screen overflow-hidden relative">
+        @await Component.InvokeAsync("_AdminLayoutHeaderComponentPartial")
+        @RenderBody()
+    </main>
+</body>
+</html>

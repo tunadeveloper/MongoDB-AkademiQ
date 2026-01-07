@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "CreateCategory";
+    Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
+}
+<div class="flex-1 overflow-y-auto p-8 pb-20">
+    <div class="max-w-7xl mx-auto space-y-8">
+<div class="glass-panel p-8 rounded-2xl shadow-sm border border-white/40 dark:border-slate-800/50 max-w-xl mx-auto">
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Kategori Güncelle</h3>
+
+    <form method="post" class="space-y-6">
+
+        <div class="flex flex-col gap-2">
+            <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Kategori ID</label>
+            <input type="hidden" name="Id" value="@Model.Id" class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 border-none ring-1 ring-slate-200 dark:ring-slate-700 text-sm shadow-sm" />
+        </div>
+        <div class="flex flex-col gap-2">
+            <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Kategori Adı</label>
+            <input type="text"
+                   name="Name"
+                   placeholder="Kategori adını giriniz..."
+                   class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-primary text-sm text-slate-900 dark:text-white shadow-sm transition" />
+        </div>
+        <div class="flex flex-col gap-2">
+            <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Durum</label>
+            <select name="Status"
+                    class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-primary text-sm text-slate-900 dark:text-white shadow-sm transition">
+                <option value="true">Aktif</option>
+                <option value="false">Pasif</option>
+            </select>
+        </div>
+
+        <div class="flex items-center justify-end gap-4 pt-4">
+
+            <a href="/kategoriler"
+               class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition">
+                Geri Dön
+            </a>
+
+            <button type="submit"
+                    class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-primary text-white hover:bg-blue-600 transition shadow">
+                Kaydet
+            </button>
+        </div>
+
+    </form>
+</div>
+</div>
+</div>

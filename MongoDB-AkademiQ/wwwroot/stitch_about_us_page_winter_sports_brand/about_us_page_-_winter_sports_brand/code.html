@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - SnowPeak</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d93f2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101b22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d161c] dark:text-white font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-slate-200 bg-white/90 backdrop-blur-md px-6 py-4 dark:border-slate-800 dark:bg-[#101b22]/90 lg:px-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-[#0d161c] dark:text-white hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-primary">ac_unit</span>
+<h2 class="text-xl font-bold leading-tight tracking-tight">SnowPeak</h2>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-sm font-medium text-primary" href="#">About Us</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Stories</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64 relative group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800 focus-within:ring-2 focus-within:ring-primary transition-all">
+<div class="text-slate-500 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-sm text-[#0d161c] dark:text-white focus:outline-0 placeholder:text-slate-400 px-3" placeholder="Search gear..."/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-[#0d161c] dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-[#0d161c] dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</button>
+<button class="md:hidden flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-[#0d161c] dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" data-alt="Snow covered mountain peaks under a clear blue sky" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBk9CwcYunTSzn7gNGUrAq-cJRtLgCTieOuBQB1upvkhO-JrhbggQxVU_NV1tAjY2C8ieOZhn90jcR3GJCTu7yERIXmHPWswyLIjaKYmbS5aBesTSx2Rs22Lf3UCKOiGa0ZvZc-z_x1tjLRpc00sdDmw8DnlaYR4XVn39lBNB-Pui0NLoTlnuEKGbipuzilBpbpVPY4jA2T2PiiT_EEId8tSrm4Djlouyr1MGsNGKO1OP32zdSNxvHFF9rkYhzewfbx8dlVx-GWxrE");'>
+</div>
+<!-- Overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background-light dark:to-background-dark"></div>
+<div class="relative z-10 flex h-full items-center justify-center px-6 text-center">
+<div class="max-w-4xl space-y-6 animate-fade-in-up">
+<h1 class="text-white text-5xl font-black leading-tight tracking-tight md:text-7xl drop-shadow-lg">
+                            Born in the Cold.<br/><span class="text-primary">Built for the Bold.</span>
+</h1>
+<p class="text-slate-100 text-lg md:text-xl font-light max-w-2xl mx-auto drop-shadow-md">
+                            Passion for winter sports, engineered for performance. We craft the gear that lets you push limits.
+                        </p>
+<div class="pt-4">
+<button class="bg-primary hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2 mx-auto">
+<span>Explore Our Story</span>
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission Statement -->
+<section class="py-20 px-6 md:px-20 bg-background-light dark:bg-background-dark">
+<div class="max-w-3xl mx-auto text-center space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+<span class="material-symbols-outlined text-base">flag</span>
+                        Our Mission
+                    </div>
+<h2 class="text-3xl md:text-4xl font-bold text-[#0d161c] dark:text-white leading-tight">
+                        To equip every adventurer with gear that defies the elements.
+                    </h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        We believe in the power of the mountains and the spirit of exploration. Whether you're carving first tracks or braving a blizzard, SnowPeak is your shield against the cold and your partner in the thrill.
+                    </p>
+</div>
+</section>
+<!-- Our Story - Split Section -->
+<section class="py-16 px-6 md:px-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="relative rounded-2xl overflow-hidden h-[500px] shadow-2xl group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Skier holding skis looking at snowy mountain landscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKRvy71-Tp9StjhzLcLMpCX4AEUGXx-FlV5nnTrxKHPbkW2WVNMSoFQ4SGub8QsHad_oRcDr3PMqW-Yk6LfN7O9npOpEeKEFvpiMC51GLdPqAE8w6FfJk3yTsbtxceBwQePqcSvhEaVl9vMvN-NxCKsFrkW9HRGDljp8tMpnqe4NECJgnFgEvrc_EmTLhmL-HC9fQ_AcVD7HZOvBOTzDDiqMf4STFk7OeR4siODaUEYgbWekgpBQxd8MhiSSWgpCaP6_pOtpZMZI0");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+<div class="text-white">
+<p class="text-sm font-bold uppercase tracking-wider text-primary mb-2">Since 1985</p>
+<p class="text-xl font-medium">From a small garage in Aspen to slopes worldwide.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<h2 class="text-3xl md:text-4xl font-bold text-[#0d161c] dark:text-white">From the Garage to the Summit</h2>
+<div class="space-y-4 text-slate-600 dark:text-slate-300">
+<p>
+                                It started with a simple idea: ski gear shouldn't just survive the cold; it should thrive in it. Founded by two professional snowboarders who were tired of equipment failing in extreme conditions, SnowPeak began as a passion project.
+                            </p>
+<p>
+                                We spent years testing prototypes on the harshest peaks we could find. If a zipper froze or a seam burst, we started over. That obsession with failure is what led to our success.
+                            </p>
+<p>
+                                Today, we are still rider-owned and driven by the same promise: no compromises. Just pure, unadulterated performance for those who hear the mountain calling.
+                            </p>
+</div>
+<div class="pt-4">
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:underline underline-offset-4" href="#">
+                                Read the full timeline
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Values -->
+<section class="py-20 px-6 md:px-20 bg-slate-50 dark:bg-[#15232d] border-y border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-10 md:gap-20 justify-between items-start mb-12">
+<div class="max-w-lg">
+<h2 class="text-3xl md:text-4xl font-bold text-[#0d161c] dark:text-white mb-4">Our Core Values</h2>
+<p class="text-slate-600 dark:text-slate-400">The principles that guide every stitch, every seam, and every product we release into the wild.</p>
+</div>
+<div class="hidden md:block h-px flex-1 bg-slate-200 dark:bg-slate-700 mt-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Value 1 -->
+<div class="bg-white dark:bg-[#1a2c38] p-8 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+</div>
+<h3 class="text-xl font-bold text-[#0d161c] dark:text-white mb-3">Precision</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                                Engineering that doesn't fail when it matters most. We measure twice, cut once, and test a thousand times.
+                            </p>
+</div>
+<!-- Value 2 -->
+<div class="bg-white dark:bg-[#1a2c38] p-8 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">landscape</span>
+</div>
+<h3 class="text-xl font-bold text-[#0d161c] dark:text-white mb-3">Respect</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                                Protecting the mountains we ride. We use sustainable materials and ethical practices to preserve nature.
+                            </p>
+</div>
+<!-- Value 3 -->
+<div class="bg-white dark:bg-[#1a2c38] p-8 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">groups</span>
+</div>
+<h3 class="text-xl font-bold text-[#0d161c] dark:text-white mb-3">Community</h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                                Bringing riders together through shared passion. The mountain is big enough for everyone.
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section class="py-20 px-6 md:px-20">
+<div class="max-w-7xl mx-auto text-center mb-16">
+<h2 class="text-3xl font-bold text-[#0d161c] dark:text-white mb-4">Meet the Pros</h2>
+<p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">The people who design, test, and live the brand every single day.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<!-- Member 1 -->
+<div class="flex flex-col items-center gap-4 group">
+<div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Portrait of Alex Chen" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Smiling man with short dark hair in outdoor gear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHa9wC3HGA8yaOvXTowUOHyI6-5ubf9sa4QBMDh2s57GRFc7bCKvw1etQJnncLoZwLdl3qC4uASAhWzHoF-_NkzhElDkKKc50q32njqJwcL30LwdqOmxR97yky8uHqXK7gy7vGqqu5lMoHynujLPkbiSFup2YpH4iNA-73wqBy8-wsHr-kFdsp05fGNhrjHtTFnU6d5ZqM2K-YDubWF-Rm5TEBcHE0ppIHGVWsCJyd7qUBAvUQO1A0Bjdf5qaUAG0ltBISCy2dT2U"/>
+</div>
+<div class="text-center">
+<h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Alex Chen</h4>
+<p class="text-primary text-sm font-medium">Head of Design</p>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="flex flex-col items-center gap-4 group">
+<div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Portrait of Sarah Jenkins" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Smiling woman with long hair wearing a beanie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlwrOuFxqDfyYxM2n4kN7Z88EI4y1lgR0KpupHIj5-bqHYwM8FuAsZt90H-zv8yT3vgxcH-NgI57G0mvQ-lE5Ex6COp0VrwHyI8EIfu1lEL02uMp-EV6r4CIhq5X4iDVcA3hBlZohGEhvN-cO7KdDnv3F5Ly1ymFrA6JrFnDXBBsIXGNgyuS8cUE5raaDhPAgJvA4Mohb-JYb6kVBDGgYR-DPM17-JKrrnFU-XGNBOeLZHn53fn0EAQ-cmPzZSGAxRD9u-HEsky2c"/>
+</div>
+<div class="text-center">
+<h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Sarah Jenkins</h4>
+<p class="text-primary text-sm font-medium">Lead Engineer</p>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="flex flex-col items-center gap-4 group">
+<div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Portrait of Marcus Thorne" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Man with beard in winter jacket looking confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjvsFwthIAGAIt99Kw7s9kWMTklGAn-dCk0Y1PU3RLZckX76JdaFEDqkLiDuXVsbKQ9RoKP5GVQhKAj2s7jU6dhYoxlsqQqm7aYi-0Nl9HY1yfOsJ55YewGBFiLaLN9gkf3Q-sV_BC1WSzNYXgkW37LPYjjS6c6UItKfArG0Cu2kinGkcGs9c510epVhs4Ibge1q5-lteskFazr6D5GAPxr48LWoCWWNEjNFQfHse2dnDEM_Rpk7qgSnswMNh82xWOtYr68a7C6A4"/>
+</div>
+<div class="text-center">
+<h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Marcus Thorne</h4>
+<p class="text-primary text-sm font-medium">Pro Rider / Tester</p>
+</div>
+</div>
+<!-- Member 4 -->
+<div class="flex flex-col items-center gap-4 group">
+<div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Portrait of Emily Dao" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Woman with goggles on head smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlfseWO8OEGe4BpAvv3AU5WzBZ0pmHtARvTqdv9neQk1UMK81McCnkOw9kO9mf7whlX7s5ZLg_Cb8PB9OAO8-8v64gFGcqyZug5m-Sgal_2OZe97QWWr1RYfK3IkGAb_AxmAtGYHRUfb9nBR4DNqCP1Xb4ln8vc1AoMF0C5xekbxj_vQdn5ThW4-0RHgHaLBg-EfpPepU9lLbWvKv8KGJDYzLG76lxFUzAdp8dVvoe2MFwCu-Yv5mdDJjFbnxNVlbEbaXF7YQmb44"/>
+</div>
+<div class="text-center">
+<h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Emily Dao</h4>
+<p class="text-primary text-sm font-medium">Sustainability Lead</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="relative py-24 px-6 md:px-20 overflow-hidden">
+<div class="absolute inset-0 bg-primary z-0">
+<div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+<!-- Abstract decorative gradient -->
+<div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-black/10 blur-3xl"></div>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto text-center text-white">
+<h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">Ready to Chase the Powder?</h2>
+<p class="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl mx-auto">
+                        Join our community of 50,000+ riders. Get exclusive access to new drops, pro tips, and mountain guides.
+                    </p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+<input class="flex-1 px-6 py-4 rounded-lg text-slate-900 focus:outline-none focus:ring-4 focus:ring-blue-400/50 border-0" placeholder="Enter your email" type="email"/>
+<button class="px-8 py-4 bg-[#101b22] hover:bg-slate-900 text-white font-bold rounded-lg transition-colors shadow-xl" type="button">
+                            Join the Adventure
+                        </button>
+</form>
+<p class="mt-4 text-xs text-blue-100 opacity-80">We respect your inbox. No spam, just snow.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-[#0b1217] border-t border-slate-200 dark:border-slate-800 pt-16 pb-8 px-6 md:px-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-3xl text-primary">ac_unit</span>
+<h3 class="text-xl font-bold text-[#0d161c] dark:text-white">SnowPeak</h3>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                        Engineered for the bold. Designed for the cold. We are the premier destination for serious winter sports enthusiasts.
+                    </p>
+</div>
+<div>
+<h4 class="font-bold text-[#0d161c] dark:text-white mb-4">Shop</h4>
+<ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Skis</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Snowboards</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Outerwear</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#0d161c] dark:text-white mb-4">Company</h4>
+<ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="text-primary font-medium" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#0d161c] dark:text-white mb-4">Support</h4>
+<ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Warranty</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-slate-400">© 2023 SnowPeak Inc. All rights reserved.</p>
+<div class="flex gap-4 text-slate-400">
+<a class="hover:text-primary transition-colors" href="#"><span class="sr-only">Instagram</span>
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="hover:text-primary transition-colors" href="#"><span class="sr-only">Twitter</span>
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

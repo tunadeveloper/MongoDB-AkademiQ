@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - WinterGear</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d93f2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101b22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full border-b border-[#e7eef4] dark:border-slate-800 bg-white dark:bg-background-dark/95 backdrop-blur-sm">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center">
+<div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1">
+<div class="flex items-center justify-between whitespace-nowrap py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">WinterGear</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-900 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-slate-900 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">Rentals</a>
+<a class="text-slate-900 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
+<a class="text-slate-900 dark:text-slate-200 text-sm font-medium text-primary" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 overflow-hidden group focus-within:ring-2 focus-within:ring-primary/50">
+<div class="text-slate-400 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none bg-transparent text-slate-900 dark:text-white focus:outline-0 border-none h-full placeholder:text-slate-400 px-3 text-sm font-normal" placeholder="Search gear..."/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg size-10 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- HeroSection -->
+<div class="relative flex w-full flex-col">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1">
+<div class="@container">
+<div class="@[480px]:p-0">
+<div class="flex min-h-[400px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-8 relative overflow-hidden" data-alt="Snow covered mountain range with clear blue sky and a skier in the distance" style='background-image: linear-gradient(rgba(13, 147, 242, 0.2) 0%, rgba(16, 27, 34, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-NaiwWyM_jXgiv5KxTm7Vu8sQ_WVqKXh1E6qv6c2frzrqR-RhGH0Uw4ZWlueDl-O0E4hHy6Ps_awx0shK4sX6o0v7-2STiQ0gCLQO63TC_wQvs29e-fxR2iDZc8phWmWuQ2o4xpfegCPp-NgPokWRLafCxBiK-YNmSZq18BoFMBTBiZetGZwpC377bjXFXTm1IMF3vi3oBgarMvmORJ6r9AU8QeqJUK4xXrFOgKnkvHauHqC_OTVM0U8BloxlUleRXCafb6pbaLg");'>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 pointer-events-none"></div>
+<div class="flex flex-col gap-3 text-center z-10 max-w-2xl">
+<h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-[-0.033em] drop-shadow-sm">
+                                        Get in Touch
+                                    </h1>
+<h2 class="text-slate-100 text-lg md:text-xl font-medium leading-relaxed drop-shadow-md">
+                                        Have a question about your gear or an upcoming trip? We're here to help you hit the slopes with confidence.
+                                    </h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Split Layout -->
+<div class="flex-1 flex justify-center w-full px-4 md:px-10 lg:px-40 py-12">
+<div class="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Contact Form (7/12) -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<div>
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight mb-2">Send us a Message</h2>
+<p class="text-slate-500 dark:text-slate-400">Fill out the form below and our team will get back to you within 24 hours.</p>
+</div>
+<div class="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 shadow-sm">
+<div class="flex flex-col gap-6">
+<!-- Name Row -->
+<div class="flex flex-col md:flex-row gap-4">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-slate-900 dark:text-white text-sm font-semibold leading-normal pb-2">First Name</p>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-slate-400 text-sm" placeholder="Jane"/>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-slate-900 dark:text-white text-sm font-semibold leading-normal pb-2">Last Name</p>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-slate-400 text-sm" placeholder="Doe"/>
+</label>
+</div>
+<!-- Email & Topic -->
+<div class="flex flex-col md:flex-row gap-4">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-slate-900 dark:text-white text-sm font-semibold leading-normal pb-2">Email Address</p>
+<input class="form-input flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-slate-400 text-sm" placeholder="jane@example.com" type="email"/>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-slate-900 dark:text-white text-sm font-semibold leading-normal pb-2">Topic</p>
+<div class="relative">
+<select class="form-select flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 h-12 px-4 pr-10 focus:border-primary focus:ring-1 focus:ring-primary text-sm appearance-none">
+<option>General Inquiry</option>
+<option>Order Support</option>
+<option>Returns &amp; Exchanges</option>
+<option>Product Questions</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</label>
+</div>
+<!-- Message -->
+<label class="flex flex-col w-full">
+<p class="text-slate-900 dark:text-white text-sm font-semibold leading-normal pb-2">Message</p>
+<textarea class="form-textarea flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 p-4 h-32 resize-y focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-slate-400 text-sm" placeholder="How can we help you today?"></textarea>
+</label>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="flex w-full md:w-auto md:min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 bg-primary hover:bg-sky-500 text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] transition-colors shadow-sm hover:shadow-md">
+<span>Send Message</span>
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Info & Map (5/12) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div>
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold leading-tight tracking-tight mb-2">Other Ways to Connect</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Prefer to speak with someone? Reach out directly.</p>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Address Card -->
+<div class="flex gap-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm items-start transition-all hover:border-primary/50">
+<div class="text-primary bg-primary/10 p-2.5 rounded-full shrink-0">
+<span class="material-symbols-outlined text-[24px]">location_on</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Visit Us</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                                123 Alpine Way, Suite 400<br/>
+                                Denver, CO 80202
+                            </p>
+</div>
+</div>
+<!-- Phone Card -->
+<div class="flex gap-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm items-start transition-all hover:border-primary/50">
+<div class="text-primary bg-primary/10 p-2.5 rounded-full shrink-0">
+<span class="material-symbols-outlined text-[24px]">call</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Call Support</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Mon-Fri from 8am to 6pm MST</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="tel:+15550192834">+1 (555) 019-2834</a>
+</div>
+</div>
+<!-- Email Card -->
+<div class="flex gap-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm items-start transition-all hover:border-primary/50">
+<div class="text-primary bg-primary/10 p-2.5 rounded-full shrink-0">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Email Us</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">We'll respond as soon as possible.</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="mailto:support@wintergear.com">support@wintersports.com</a>
+</div>
+</div>
+</div>
+<!-- Map -->
+<div class="relative w-full h-64 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm mt-2">
+<img alt="Map showing location in Denver Colorado" class="w-full h-full object-cover" data-location="Denver, Colorado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFJJ1zq8_QpcAROJwFRC9VCNU5_ubusVBP2xIweffeKFoq3927zthkbCgbBe6-OjAagIaWnoIY68jugTa9QuUWfSdSI1DzVaj0iujNF4AgFgHm1tWU-uJUSXVJvNi3x3FvLYOFeY5niMlb2EwD84AaJST1l5q7bF4oV6bkuvRaiTDxzLGdw0-oKIx20yeF1lCas-L3XVlnsULzjG2JjAA1CjJV-W3qt4SJSIHnyNb5ipYGaBgu_II76j9uHuZp_OnEA-kocUjmhTA"/>
+<div class="absolute inset-0 bg-slate-900/10 flex items-center justify-center pointer-events-none">
+<div class="bg-white text-slate-900 p-2 rounded-lg shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">storefront</span>
+<span class="font-bold text-xs">Flagship Store</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FAQ Teaser Section -->
+<div class="bg-white dark:bg-slate-800/30 border-t border-slate-200 dark:border-slate-800 py-16">
+<div class="px-4 md:px-10 lg:px-40 flex justify-center">
+<div class="w-full max-w-[900px] flex flex-col gap-10">
+<div class="text-center">
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight mb-3">Frequently Asked Questions</h2>
+<p class="text-slate-500 dark:text-slate-400">Save time by checking if your question is answered here.</p>
+</div>
+<div class="grid gap-4">
+<details class="group bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+<summary class="flex items-center justify-between font-bold text-slate-900 dark:text-white list-none">
+<span>How do I track my order?</span>
+<span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                            Once your order ships, you will receive an email with a tracking link. You can also view your order status by logging into your account dashboard.
+                        </p>
+</details>
+<details class="group bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+<summary class="flex items-center justify-between font-bold text-slate-900 dark:text-white list-none">
+<span>What is your return policy for ski equipment?</span>
+<span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                            We accept returns on unused equipment within 30 days of purchase. Items must be in original packaging. Custom-mounted skis are final sale.
+                        </p>
+</details>
+<details class="group bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+<summary class="flex items-center justify-between font-bold text-slate-900 dark:text-white list-none">
+<span>Do you offer international shipping?</span>
+<span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                            Yes, we ship to most countries with winter sports destinations. Shipping costs and delivery times vary by location and are calculated at checkout.
+                        </p>
+</details>
+</div>
+<div class="text-center pt-4">
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:underline" href="#">
+                        View all FAQs 
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+<div class="px-4 md:px-10 lg:px-40 flex justify-center">
+<div class="w-full max-w-[1200px] flex flex-col gap-10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold">WinterGear</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Premium gear for your next alpine adventure. Born in the mountains.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-slate-900 dark:text-white font-bold">Shop</h4>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Skis</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Snowboards</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Apparel</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Accessories</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-slate-900 dark:text-white font-bold">Company</h4>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">About Us</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Careers</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Press</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-slate-900 dark:text-white font-bold">Support</h4>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Help Center</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Returns</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Shipping Info</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm hover:text-primary" href="#">Size Guide</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-8 gap-4">
+<p class="text-slate-400 text-sm">© 2023 WinterGear Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary" href="#">
+<span class="sr-only">Facebook</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="text-slate-400 hover:text-primary" href="#">
+<span class="sr-only">Instagram</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.484 2h.058v.001zm-1.705-1.95c-1.096-.047-2.025-.06-2.816-.06-2.912 0-5.718.305-7.828 2.415-2.11 2.11-2.415 4.916-2.415 7.828 0 1.05.008 2.175.071 3.208 0 .093.003.186.007.28.058 1.485.196 2.875 1.076 3.993.882 1.118 2.074 1.734 3.496 1.802 1.034.053 2.16.06 3.209.06 2.912 0 5.718-.305 7.828-2.415 2.11-2.11 2.415-4.916 2.415-7.828 0-1.05-.008-2.175-.071-3.208a9.49 9.49 0 00-.007-.28c-.058-1.485-.196-2.875-1.076-3.993-.882-1.118-2.074-1.734-3.496-1.802-1.033-.053-2.159-.06-3.208-.06zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

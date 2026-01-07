@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SnowPeak Admin - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b9dee",
+                        "background-light": "#f0f8ff", // Slightly more blue-tinted for winter feel
+                        "background-dark": "#101a22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2632",
+                        "ice-blue": "#e0f2fe",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Frosted glass effect utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-panel {
+            background: rgba(26, 38, 50, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 h-screen overflow-y-auto glass-panel border-r border-slate-200/50 dark:border-slate-800/50 flex flex-col justify-between fixed left-0 top-0 z-20">
+<div class="flex flex-col gap-6 p-6">
+<!-- Brand -->
+<div class="flex items-center gap-3">
+<div class="bg-gradient-to-br from-primary to-blue-400 aspect-square rounded-xl size-10 flex items-center justify-center text-white shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-[24px]">ac_unit</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">SnowPeak</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Admin Console</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary transition-all duration-200 group relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-primary/10 w-0 group-hover:w-full transition-all duration-300"></div>
+<span class="material-symbols-outlined relative z-10" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-sm font-semibold relative z-10">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-sm font-medium">Orders</span>
+<span class="ml-auto bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="text-sm font-medium">Categories</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">reviews</span>
+<span class="text-sm font-medium">Reviews</span>
+</a>
+</nav>
+</div>
+<div class="p-6">
+<div class="flex flex-col gap-2 border-t border-slate-200/50 dark:border-slate-700/50 pt-6">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-slate-600 dark:text-slate-400 hover:text-red-600 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-medium">Log Out</span>
+</a>
+</div>
+<!-- User Profile Snippet -->
+<div class="flex items-center gap-3 mt-6 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-slate-700 shadow-sm" data-alt="Portrait of admin user smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD78hZ7_lB-G8Utsdrg_BjBMnBLzWRIAfgmUpL4IAwY-Eqj3y92QYn_9YOosMJmXqD91TeyyAN5DNZ-JLgGE4-yD8rcNAG72xor79cN4zHu7Vzpk3ITHcVCvkrsompvYs-UXcwpKHBudUAyYPjz4jkPY_BjP68sk6s5q6mnpAngg0jAm5sOHJlGAo3OUOHe0r7RjLj1RZkVXiv0AHVFECzDoUb3H8YAjIwtKX2UsUhBskpEkf7vP0kWuuXyvvLCZ9qOCSL6O7bHZmo");'></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Alex Morgan</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 flex flex-col h-screen overflow-hidden relative">
+<!-- Top Header -->
+<header class="h-20 flex-shrink-0 flex items-center justify-between px-8 py-4 glass-panel border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Dashboard Overview</h2>
+<span class="px-3 py-1 bg-ice-blue dark:bg-slate-800 text-primary text-xs font-bold rounded-full uppercase tracking-wider">Winter Season 2024</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+</div>
+<input class="block w-64 pl-10 pr-4 py-2.5 rounded-full bg-white dark:bg-slate-800 border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-primary text-sm text-slate-900 dark:text-white placeholder-slate-400 shadow-sm transition-all" placeholder="Search orders, products..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="relative p-2.5 rounded-full bg-white dark:bg-slate-800 hover:bg-ice-blue dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+</button>
+<button class="p-2.5 rounded-full bg-white dark:bg-slate-800 hover:bg-ice-blue dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto p-8 pb-20">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">payments</span>
+</div>
+<div class="relative z-10 flex flex-col gap-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Revenue</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">$124,500</h3>
+<div class="flex items-center gap-1 mt-2">
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 12%
+                                </span>
+<span class="text-slate-400 text-xs">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">shopping_bag</span>
+</div>
+<div class="relative z-10 flex flex-col gap-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Recent Orders</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">1,045</h3>
+<div class="flex items-center gap-1 mt-2">
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 5%
+                                </span>
+<span class="text-slate-400 text-xs">vs last week</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">inventory</span>
+</div>
+<div class="relative z-10 flex flex-col gap-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Inventory Level</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">1,204 Items</h3>
+<div class="flex items-center gap-1 mt-2">
+<span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> 2%
+                                </span>
+<span class="text-slate-400 text-xs">stock depletion</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">group</span>
+</div>
+<div class="relative z-10 flex flex-col gap-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Active Users</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">8,920</h3>
+<div class="flex items-center gap-1 mt-2">
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">person_add</span> 18%
+                                </span>
+<span class="text-slate-400 text-xs">new signups</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Chart Section -->
+<div class="glass-panel rounded-2xl p-8 shadow-sm border border-white dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Sales Performance</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Sales trends over the winter season</p>
+</div>
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<button class="px-3 py-1.5 text-xs font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md text-slate-900 dark:text-white transition-all">Weekly</button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">Monthly</button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">Yearly</button>
+</div>
+</div>
+<!-- Chart SVG -->
+<div class="w-full h-64 relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 1000 300">
+<defs>
+<lineargradient id="gradientPrimary" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2b9dee" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#2b9dee" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#e2e8f0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="0" y2="0"></line>
+<line stroke="#e2e8f0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="75" y2="75"></line>
+<line stroke="#e2e8f0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="150" y2="150"></line>
+<line stroke="#e2e8f0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="225" y2="225"></line>
+<line stroke="#e2e8f0" stroke-width="1" x1="0" x2="1000" y1="300" y2="300"></line>
+<!-- Area Path -->
+<path d="M0,220 C100,200 150,250 250,150 C350,50 400,100 500,80 C600,60 650,120 750,100 C850,80 900,20 1000,50 V300 H0 Z" fill="url(#gradientPrimary)"></path>
+<!-- Stroke Path -->
+<path d="M0,220 C100,200 150,250 250,150 C350,50 400,100 500,80 C600,60 650,120 750,100 C850,80 900,20 1000,50" fill="none" stroke="#2b9dee" stroke-linecap="round" stroke-width="4"></path>
+<!-- Points -->
+<circle cx="250" cy="150" fill="#fff" r="6" stroke="#2b9dee" stroke-width="3"></circle>
+<circle cx="500" cy="80" fill="#fff" r="6" stroke="#2b9dee" stroke-width="3"></circle>
+<circle cx="750" cy="100" fill="#fff" r="6" stroke="#2b9dee" stroke-width="3"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="flex justify-between mt-4 text-xs font-medium text-slate-400">
+<span>Nov 01</span>
+<span>Nov 08</span>
+<span>Nov 15</span>
+<span>Nov 22</span>
+<span>Nov 29</span>
+<span>Dec 06</span>
+<span>Dec 13</span>
+</div>
+</div>
+</div>
+<!-- Recent Orders Section -->
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Orders Table -->
+<div class="glass-panel rounded-2xl p-6 shadow-sm flex-[2] border border-white dark:border-slate-800">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Recent Orders</h3>
+<button class="text-sm text-primary font-medium hover:text-blue-600 transition-colors">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead>
+<tr class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
+<th class="pb-3 pl-2">Product</th>
+<th class="pb-3">Customer</th>
+<th class="pb-3">Status</th>
+<th class="pb-3">Amount</th>
+<th class="pb-3">Date</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-700/50">
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 pl-2 flex items-center gap-3">
+<div class="bg-slate-100 rounded-lg size-10 bg-cover bg-center" data-alt="Image of blue snowboard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0clxb8R3eOV3UvfsqrIOMBsFyxWVra16oVTebWHYEmsKmJ-XSiYIeUB2TxFBs0-TXZFKTz2IxUGH6deCvw9uoOiLhXoYscKc_dyivENfpebtXAiG8fmeRy8o1WOpAQqcJzKR8B9o4Ta4uEEbmup1_CeZJEMLwT_zAkFmgImWwuJMgTMS0XwItYseGr5p69yFaBtz02nG4t8r_vL5kxrPjJ7GkCR6g2Zw2FTj8oRKzFVVQTWNfQ4bZxwm6JhCv7kMWtuznOyIBi7E');"></div>
+<span class="font-medium text-slate-900 dark:text-slate-200">Alpine Pro Snowboard</span>
+</td>
+<td class="py-4 text-slate-600 dark:text-slate-400">Sarah Johnson</td>
+<td class="py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
+                                                Processing
+                                            </span>
+</td>
+<td class="py-4 font-medium text-slate-900 dark:text-white">$450.00</td>
+<td class="py-4 text-slate-500 dark:text-slate-400">Dec 12</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 pl-2 flex items-center gap-3">
+<div class="bg-slate-100 rounded-lg size-10 bg-cover bg-center" data-alt="Image of ski jacket" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKdyw5bS0lUd4hZcRPF6ZiwZ5opEJqBZp-BFKX80NOelT4yX2F2DOgMwIFTekoQ9FSLQDMXFfD8tYIQFELpRWuJ9yDWjVlJojRwWQy7C_k-wOwKMwtPMdH2BIjCYd8MOLKfFAcj4MqO553ZQEz4BxdtDr_pDa5eyZ6oBvbJL07U9RBWmVgcUmYf-XnrjKDmUxmWLC17dMF6JOybvvVbyO_0HEluAOA0R_icQVLHWYd8xR-6WSqvadYQVUFHWcFfdnLJoBhex2oPFw');"></div>
+<span class="font-medium text-slate-900 dark:text-slate-200">Thermal Ski Jacket</span>
+</td>
+<td class="py-4 text-slate-600 dark:text-slate-400">Mike Chen</td>
+<td class="py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                Shipped
+                                            </span>
+</td>
+<td class="py-4 font-medium text-slate-900 dark:text-white">$220.50</td>
+<td class="py-4 text-slate-500 dark:text-slate-400">Dec 11</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 pl-2 flex items-center gap-3">
+<div class="bg-slate-100 rounded-lg size-10 bg-cover bg-center" data-alt="Image of ski goggles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFn0IsR8w_NJlW_YvEyUU93xzSFjKFNYZAE6PKmQysLT1yXiyemN5awSOdeEOWYMbe7CvPA1siR75Huke9mi-ESCtboVo9dd9NuMYD4Km6pS3xF9_tNh74u_NYRNiMPUy94vgL5tfFbHEBJmXiQ6hk6M4RrtdgFzjvXq5u6mVZ4lWRYRVE4sznCTigMjuiSTPDI4d1R-o2PKkvdFktrd7LAHNlQ36FrF9p_UUngPcYAMtGLD5q_IOvaEzDiZ73Sj5LKlh4jFPirNQ');"></div>
+<span class="font-medium text-slate-900 dark:text-slate-200">Glacier Goggles</span>
+</td>
+<td class="py-4 text-slate-600 dark:text-slate-400">Emma Wilson</td>
+<td class="py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                Shipped
+                                            </span>
+</td>
+<td class="py-4 font-medium text-slate-900 dark:text-white">$89.00</td>
+<td class="py-4 text-slate-500 dark:text-slate-400">Dec 11</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 pl-2 flex items-center gap-3">
+<div class="bg-slate-100 rounded-lg size-10 bg-cover bg-center" data-alt="Image of ski boots" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCS94qRqb3Lxl-39_Ih9oBFMaqhsvYiHEmgF-JUX7ek4uVdPoP2ljVir6yXnIX-zA5W2moXWwvKymt5hT4HqgSppk0--0ULF85ZRxPFCXttsIeIqGOX_2R6eNI6PnU6HMcm3OjH_WrgU8a3oZNwktTzbudeYuThoQDKHzHF225UeVJ8d2DdkSHuwUOIgXmKQJLlWVS8rWKC519ro7M7hoAz1qjqwMg8Miw_lWOyiwheEGQIZCOXLgkUOMakiVaE5dbLmoLsa5b8YLc');"></div>
+<span class="font-medium text-slate-900 dark:text-slate-200">Pro-Series Boots</span>
+</td>
+<td class="py-4 text-slate-600 dark:text-slate-400">David Miller</td>
+<td class="py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300">
+                                                Pending
+                                            </span>
+</td>
+<td class="py-4 font-medium text-slate-900 dark:text-white">$350.00</td>
+<td class="py-4 text-slate-500 dark:text-slate-400">Dec 10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Side Activity/Notifications -->
+<div class="flex-1 space-y-6">
+<!-- Quick Actions -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm border border-white dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-primary/5 hover:bg-primary/10 text-primary border border-primary/20 transition-all">
+<span class="material-symbols-outlined mb-2">add_box</span>
+<span class="text-xs font-semibold">Add Product</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-all">
+<span class="material-symbols-outlined mb-2">local_shipping</span>
+<span class="text-xs font-semibold">Ship Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-all">
+<span class="material-symbols-outlined mb-2">person_add</span>
+<span class="text-xs font-semibold">New User</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-all">
+<span class="material-symbols-outlined mb-2">file_download</span>
+<span class="text-xs font-semibold">Export CSV</span>
+</button>
+</div>
+</div>
+<!-- Top Products -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm border border-white dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Top Selling</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-cover rounded-lg size-12" data-alt="Image of red ski jacket" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBw-D_E6tEQxdZtXMdqvKd5nkTjKv_aFZgJ36-hGLY5kRTbPaS-5DTNWyEWuT97oUcXyex35W_px-ceWnCusW3f4p4105a3GdZrE1X3919s1aTxtGtp-oWYy86lvOPq6w0SoFpNiDdk1NF7hHgfpVccwLc9tCQJf5n35fxuD_Czn9S-GqqLNKZs47EP0dQxZUxZR_eUNLzIDxjqenaVI8AIm8SD2hBw7FzssF1s1WbPHITlOyoQS45LBAehDfzLG3WnirgOJlDFRd8');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Red Peak Jacket</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">124 sold this week</p>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">$24k</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-cover rounded-lg size-12" data-alt="Image of blue snowboard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6M0ufZoldlt0sxUNoV66RjflD-gwrQ24WbXL72a-p15a0CKEETjKN-n0_MbT7ZU_4yIohwPy9xxhKBTvLP7vB-TuhH_V7eXw1s9bX19-DMDFrcbm9tr31eI6wy2q8dPMg8SA5CKI8w8j7DQdm0Cdox96BA6OH5LgTFXP-tMn8kCi3mzej5JPrC4IQj16glS4layLGgR5DK8Pf9Tpayxl8re0FXt6aReEv0p8jNWCBpG1BYftnIKCV0lW2ll5HksNgdODW1o90VF4');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Alpine Pro Board</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">89 sold this week</p>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">$18k</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-cover rounded-lg size-12" data-alt="Image of winter gloves" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2RKCZ4g5cPjVevdeDtHBsVrBC8vm0O-XpAyq-npGzg3AsVxrl0iwLUy035t1AgN8LWoDj5StfeX_fq9cpTc4ctxIHhLJLHJw9EVh4r0uVuuEp83eLEdy1KzoQh4ONsTr-mYC56HExLrwLvygoeVnL4ytC0OLPnAHqFaMUtKxV93oIZlmgxJ1kFLxjGMIOJAjONk-XxRrFe_F63b3ISChrnRX0Bu0J8IhRCik1hCF0L--gDBBfhAIc1INmWWPOriQICeeYfQXg99s');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Arctic Gloves</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">205 sold this week</p>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">$12k</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

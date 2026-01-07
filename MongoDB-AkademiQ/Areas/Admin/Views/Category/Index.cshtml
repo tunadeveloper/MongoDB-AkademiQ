@@ -1,0 +1,66 @@
+﻿@model List<ResultCategoryDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
+    int count = 0;
+}
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+<div x-data="{ open:false, editMode:false, categoryId:'', categoryName:'' }"
+     class="flex-1 overflow-y-auto p-8 pb-20">
+
+    <div class="max-w-7xl mx-auto space-y-8">
+
+        <div class="glass-panel rounded-2xl p-6 shadow-sm flex-[2] border border-white dark:border-slate-800">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Kategori Listesi</h3>
+
+                <button @@click="open=true; editMode=false; categoryId=''; categoryName='';"
+                        class="text-sm text-primary font-medium hover:text-blue-600 transition-colors">
+                    + Kategori Ekle
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
+                            <th class="pb-3 pl-2">#</th>
+                            <th class="pb-3">Kategori Adı</th>
+                            <th class="pb-3">Sil</th>
+                            <th class="pb-3">Düzenle</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-700/50">
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                <td class="py-4 text-slate-600 dark:text-slate-400">@count</td>
+                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Name</td>
+
+                                <td class="py-4">
+                                    <a href="/Admin/Category/DeleteCategory/@item.Id"
+                                       class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
+                                        Sil
+                                    </a>
+                                </td>
+
+                                <td class="py-4">
+                                    <button @@click="open=true; editMode=true; categoryId='@item.Id'; categoryName='@item.Name';"
+                                            class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                                        Düzenle
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("_CreateCategoryComponentPartial")
+</div>
+
