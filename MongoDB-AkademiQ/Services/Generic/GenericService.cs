@@ -1,0 +1,57 @@
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using MongoDB_AkademiQ.Settings;
+
+namespace MongoDB_AkademiQ.Services.Generic;
+
+public abstract class GenericService<TEntity, TCreateDTO, TUpdateDTO, TResultDTO> : IGenericService<TEntity, TCreateDTO, TUpdateDTO, TResultDTO>
+    where TEntity : class
+{
+    protected readonly IMongoCollection<TEntity> _mongoCollection;
+
+    protected GenericService(IDatabaseSettings databaseSettings, string collectionName)
+    {
+        var client = new MongoClient(databaseSettings.ConnectionString);
+        var database = client.GetDatabase(databaseSettings.DatabaseName);
+        _mongoCollection = database.GetCollection<TEntity>(collectionName);
+    }
+
+    public virtual async Task CreateAsync(TCreateDTO createDTO)
+    {
+        var entity = MapToEntity(createDTO);
+        await _mongoCollection.InsertOneAsync(entity);
+    }
+
+    public virtual async Task DeleteAsync(string id)
+    {
+        var filter = Builders<TEntity>.Filter.Eq("Id", id);
+        await _mongoCollection.DeleteOneAsync(filter);
+    }
+
+    public virtual async Task<List<TResultDTO>> GetAllAsync()
+    {
+        var entities = await _mongoCollection.AsQueryable().ToListAsync();
+        return entities.Select(MapToResultDTO).ToList();
+    }
+
+    public virtual async Task<TUpdateDTO> GetByIdAsync(string id)
+    {
+        var filter = Builders<TEntity>.Filter.Eq("Id", id);
+        var entity = await _mongoCollection.Find(filter).FirstOrDefaultAsync();
+        return MapToUpdateDTO(entity);
+    }
+
+    public virtual async Task UpdateAsync(TUpdateDTO updateDTO)
+    {
+        var entity = MapToEntity(updateDTO);
+        var id = GetIdFromUpdateDTO(updateDTO);
+        var filter = Builders<TEntity>.Filter.Eq("Id", id);
+        await _mongoCollection.FindOneAndReplaceAsync(filter, entity);
+    }
+
+    protected abstract TEntity MapToEntity(TCreateDTO createDTO);
+    protected abstract TEntity MapToEntity(TUpdateDTO updateDTO);
+    protected abstract TResultDTO MapToResultDTO(TEntity entity);
+    protected abstract TUpdateDTO MapToUpdateDTO(TEntity entity);
+    protected abstract string GetIdFromUpdateDTO(TUpdateDTO updateDTO);
+}

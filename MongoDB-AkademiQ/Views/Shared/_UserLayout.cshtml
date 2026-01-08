@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+@await Component.InvokeAsync("_LayoutHeadComponentPartial")
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased min-h-screen flex flex-col">
+    @await Component.InvokeAsync("_LayoutHeaderComponentPartial")
+    @RenderBody()
+    @await Component.InvokeAsync("_LayoutFooterComponentPartial")
+</body>
+</html>

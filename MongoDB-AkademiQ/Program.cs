@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
-using MongoDB_AkademiQ.Services;
+using MongoDB_AkademiQ.Services.Categories;
+using MongoDB_AkademiQ.Services.Products;
 using MongoDB_AkademiQ.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;

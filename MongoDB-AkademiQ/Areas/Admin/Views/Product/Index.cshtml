@@ -1,22 +1,22 @@
-﻿@model List<ResultCategoryDTO>
+@model List<ResultProductDTO>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
 }
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-<div x-data="{ open:false, editMode:false, categoryId:'', categoryName:'', categoryImage:'', categoryDesc:'' }"
+<div x-data="{ open:false, editMode:false, productId:'', productName:'', productImage:'', productDesc:'', productPrice:'', productIsPopular:false, productCategoryId:'' }"
      class="flex-1 overflow-y-auto p-8 pb-20">
 
     <div class="max-w-7xl mx-auto space-y-8">
 
         <div class="glass-panel rounded-2xl p-6 shadow-sm flex-[2] border border-white dark:border-slate-800">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Kategori Listesi</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Ürün Listesi</h3>
 
-                <button @@click="open=true; editMode=false; categoryId=''; categoryName=''; categoryImage=''; categoryDesc='';"
+                <button @@click="open=true; editMode=false; productId=''; productName=''; productImage=''; productDesc=''; productPrice=''; productIsPopular=false; productCategoryId='';"
                         class="text-sm text-primary font-medium hover:text-blue-600 transition-colors">
-                    + Kategori Ekle
+                    + Ürün Ekle
                 </button>
             </div>
 
@@ -25,8 +25,10 @@
                     <thead>
                         <tr class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
                             <th class="pb-3 pl-2">#</th>
-                            <th class="pb-3">Kategori Adı</th>
+                            <th class="pb-3">Ürün Adı</th>
+                            <th class="pb-3">Fiyat</th>
                             <th class="pb-3">Açıklama</th>
+                            <th class="pb-3">Popüler</th>
                             <th class="pb-3">Sil</th>
                             <th class="pb-3">Düzenle</th>
                         </tr>
@@ -42,10 +44,21 @@
                                          class="w-12 h-12 rounded-full object-cover border border-slate-200 dark:border-slate-700 shadow-sm" />
                                 </td>
                                 <td class="py-4 text-slate-600 dark:text-slate-400">@item.Name</td>
+                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Price.ToString("C")</td>
                                 <td class="py-4 text-slate-600 dark:text-slate-400">@(item.Description is null ? "Açıklama Yok" : item.Description.Length >= 40 ? item.Description.Substring(0,40) + "..." : item.Description) </td>
+                                <td class="py-4 text-slate-600 dark:text-slate-400">
+                                    @if (item.IsPopular)
+                                    {
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Evet</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400">Hayır</span>
+                                    }
+                                </td>
 
                                 <td class="py-4">
-                                    <a href="/Admin/Category/DeleteCategory/@item.Id"
+                                    <a href="/Admin/Product/DeleteProduct/@item.Id"
                                        class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
                                         Sil
                                     </a>
@@ -56,7 +69,10 @@
                                             data-name="@(item.Name ?? "")" 
                                             data-image="@(item.ImageUrl ?? "")" 
                                             data-desc="@(item.Description ?? "")"
-                                            @@click="open=true; editMode=true; categoryId=$el.dataset.id; categoryName=$el.dataset.name; categoryImage=$el.dataset.image; categoryDesc=$el.dataset.desc;"
+                                            data-price="@item.Price"
+                                            data-popular="@item.IsPopular.ToString().ToLower()"
+                                            data-category="@(item.CategoryId ?? "")"
+                                            @@click="open=true; editMode=true; productId=$el.dataset.id; productName=$el.dataset.name; productImage=$el.dataset.image; productDesc=$el.dataset.desc; productPrice=$el.dataset.price; productIsPopular=$el.dataset.popular === 'true'; productCategoryId=$el.dataset.category;"
                                             class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
                                         Düzenle
                                     </button>
@@ -69,6 +85,5 @@
             </div>
         </div>
     </div>
-    @await Component.InvokeAsync("_CreateCategoryComponentPartial")
+    @await Component.InvokeAsync("_CreateProductComponentPartial")
 </div>
-

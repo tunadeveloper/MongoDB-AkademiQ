@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB_AkademiQ.DTOs.CategoryDTOs;
-using MongoDB_AkademiQ.Services;
+using MongoDB_AkademiQ.Services.Categories;
 
 namespace MongoDB_AkademiQ.Areas.Admin.Controllers
 {
