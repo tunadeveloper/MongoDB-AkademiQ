@@ -2,6 +2,7 @@ using MongoDB_AkademiQ.DTOs.ProductDTOs;
 using MongoDB_AkademiQ.Entities;
 using MongoDB_AkademiQ.Services.Generic;
 using MongoDB_AkademiQ.Settings;
+using MongoDB.Driver;
 
 namespace MongoDB_AkademiQ.Services.Products;
 
@@ -70,5 +71,21 @@ public class ProductService : GenericService<Product, CreateProductDTO, UpdatePr
     protected override string GetIdFromUpdateDTO(UpdateProductDTO updateDTO)
     {
         return updateDTO.Id;
+    }
+
+    public async Task<List<ResultProductDTO>> SearchAsync(string searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+            return new List<ResultProductDTO>();
+
+        var searchLower = searchTerm.ToLower();
+        
+        var filter = Builders<Product>.Filter.Or(
+            Builders<Product>.Filter.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(searchTerm, "i")),
+            Builders<Product>.Filter.Regex(p => p.Description, new MongoDB.Bson.BsonRegularExpression(searchTerm, "i"))
+        );
+
+        var products = await _mongoCollection.Find(filter).ToListAsync();
+        return products.Select(MapToResultDTO).ToList();
     }
 }

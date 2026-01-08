@@ -6,5 +6,6 @@ namespace MongoDB_AkademiQ.Services.Products
 {
     public interface IProductService : IGenericService<Product, CreateProductDTO, UpdateProductDTO, ResultProductDTO>
     {
+        Task<List<ResultProductDTO>> SearchAsync(string searchTerm);
     }
 }

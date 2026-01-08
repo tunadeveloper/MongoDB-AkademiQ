@@ -1,0 +1,176 @@
+﻿@using MongoDB_AkademiQ.DTOs.ProductDTOs
+@{
+    ViewData["Title"] = "Anasayfa";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@model List<ResultProductDTO>
+<div class="relative w-full">
+    <div class="flex min-h-[400px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-center justify-center p-8 text-center" data-alt="Parlak mavi gökyüzü altında uzaktaki kayakçı ile karlı dağ zirveleri" style='background-image: linear-gradient(rgba(16, 27, 34, 0.3) 0%, rgba(16, 27, 34, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdY8U4qWNbeTPlhuCE86vhz_8Nu6PhQ8Y51JWxenuQ3ffI69CJFdpivBi4ptq7F3K_qABHeVdnLCZlvppezCgdBfOIY-cTyjOA95ZoiBgJ6W7Bn8Ul8ZcsCpwVq0nmQIFXzOtxdbOFJUa_CK5MCTJtosyZ2fZJxuB38w0uL8k09L2dl3ELT1MxhJ6ZXeoy88gymRk5N4W8qCADMl_d2g2IMWjQqbDrTTdbrADWF-KmR1l6_nHMIdeOJ_eBoovf04486ygRt01eK_U");'>
+        <div class="flex flex-col gap-2 max-w-2xl animate-fade-in-up">
+            <span class="text-primary font-bold tracking-widest uppercase text-sm">Yeni Gelenler</span>
+            <h1 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-lg">
+                ZİRVELERİ FETHET
+            </h1>
+            <h2 class="text-slate-100 text-lg font-light md:text-xl drop-shadow-md">
+                En zorlu kış koşulları için profesyonel kalitede ekipmanlar.
+            </h2>
+        </div>
+        <button class="mt-4 flex items-center justify-center rounded-lg bg-primary hover:bg-sky-500 text-white h-12 px-8 font-bold tracking-wide transition-all transform hover:scale-105 shadow-lg shadow-primary/30">
+            KOLEKSİYONU İNCELE
+        </button>
+    </div>
+</div>
+<div class="max-w-[1440px] mx-auto px-4 md:px-8 py-8">
+    <div class="flex flex-wrap gap-2 items-center text-sm mb-6">
+        <a class="text-slate-500 hover:text-primary transition-colors" href="#">Anasayfa</a>
+        <span class="text-slate-300">/</span>
+        <a class="text-slate-500 hover:text-primary transition-colors" href="#">Ekipman</a>
+        <span class="text-slate-300">/</span>
+        <span class="text-slate-900 dark:text-white font-medium">Kış 2024 Koleksiyonu</span>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <div>
+            <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Kış Ekipmanları</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-1">124 Ürün Bulundu</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <label class="flex items-center gap-2">
+                <span class="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">Sıralama:</span>
+                <div class="relative min-w-[180px]">
+                    <select class="appearance-none w-full bg-white dark:bg-[#1a2c38] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg pl-3 pr-10 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer">
+                        <option>Öne Çıkanlar</option>
+                        <option>Yeni Gelenler</option>
+                        <option>Fiyat: Artan</option>
+                        <option>Fiyat: Azalan</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                        <span class="material-symbols-outlined text-[20px]">expand_more</span>
+                    </div>
+                </div>
+            </label>
+            <button class="md:hidden flex items-center justify-center size-10 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-[#1a2c38]">
+                <span class="material-symbols-outlined">filter_list</span>
+            </button>
+        </div>
+    </div>
+    <div class="flex gap-8">
+        <aside class="hidden md:block w-64 shrink-0 space-y-8">
+            <div class="group">
+                <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+                    Kategoriler
+                    <span class="material-symbols-outlined text-slate-400">remove</span>
+                </h3>
+                <div class="space-y-2.5">
+                    <label class="flex items-center gap-3 cursor-pointer group/item">
+                        <input checked="" class="rounded border-slate-300 text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 dark:border-slate-600" type="checkbox" />
+                        <span class="text-sm text-slate-700 dark:text-slate-300 group-hover/item:text-primary transition-colors">Snowboardlar</span>
+                        <span class="text-xs text-slate-400 ml-auto">(42)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group/item">
+                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 dark:border-slate-600" type="checkbox" />
+                        <span class="text-sm text-slate-700 dark:text-slate-300 group-hover/item:text-primary transition-colors">Botlar</span>
+                        <span class="text-xs text-slate-400 ml-auto">(28)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group/item">
+                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 dark:border-slate-600" type="checkbox" />
+                        <span class="text-sm text-slate-700 dark:text-slate-300 group-hover/item:text-primary transition-colors">Bağlamalar</span>
+                        <span class="text-xs text-slate-400 ml-auto">(15)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group/item">
+                        <input class="rounded border-slate-300 text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800 dark:border-slate-600" type="checkbox" />
+                        <span class="text-sm text-slate-700 dark:text-slate-300 group-hover/item:text-primary transition-colors">Dış Giyim</span>
+                        <span class="text-xs text-slate-400 ml-auto">(39)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+                <h3 class="font-bold text-slate-900 dark:text-white mb-4">Fiyat Aralığı</h3>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="relative flex-1">
+                        <span class="absolute left-3 top-2.5 text-slate-400 text-sm">$</span>
+                        <input class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded pl-6 py-2 text-sm focus:border-primary focus:ring-0" type="number" value="0" />
+                    </div>
+                    <span class="text-slate-400">-</span>
+                    <div class="relative flex-1">
+                        <span class="absolute left-3 top-2.5 text-slate-400 text-sm">$</span>
+                        <input class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded pl-6 py-2 text-sm focus:border-primary focus:ring-0" type="number" value="1200" />
+                    </div>
+                </div>
+                <input class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700 accent-primary" type="range" />
+            </div>
+            <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+                <h3 class="font-bold text-slate-900 dark:text-white mb-4">Renk</h3>
+                <div class="flex flex-wrap gap-3">
+                    <button class="size-8 rounded-full bg-slate-900 ring-2 ring-offset-2 ring-slate-300 dark:ring-offset-slate-900 dark:ring-slate-600 ring-offset-white"></button>
+                    <button class="size-8 rounded-full bg-blue-600 hover:ring-2 ring-offset-2 ring-blue-300 transition-all"></button>
+                    <button class="size-8 rounded-full bg-red-500 hover:ring-2 ring-offset-2 ring-red-300 transition-all"></button>
+                    <button class="size-8 rounded-full bg-yellow-400 hover:ring-2 ring-offset-2 ring-yellow-200 transition-all"></button>
+                    <button class="size-8 rounded-full bg-white border border-slate-200 hover:ring-2 ring-offset-2 ring-slate-200 transition-all"></button>
+                    <button class="size-8 rounded-full bg-green-700 hover:ring-2 ring-offset-2 ring-green-300 transition-all"></button>
+                </div>
+            </div>
+        </aside>
+        <div class="flex-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                @foreach(var item in Model)
+                {
+                    <div class="group relative flex flex-col rounded-xl bg-white dark:bg-[#1a2c38] shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-800 overflow-hidden">
+                        <div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                            @if(item.IsPopular == true){
+                            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Popüler</span>
+                            }
+                            <button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 dark:bg-black/40 hover:bg-white dark:hover:bg-black text-slate-400 hover:text-red-500 transition-colors backdrop-blur-sm">
+                                <span class="material-symbols-outlined text-[20px] fill-current">favorite</span>
+                            </button>
+                            <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="@item.Description" src="@item.ImageUrl" />
+                            <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <button class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-3 rounded-lg font-bold text-sm shadow-lg hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+                                    Sepete Ekle
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col gap-1.5">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight group-hover:text-primary transition-colors">@item.Name</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">All-Mountain / Serbest Stil</p>
+                            <div class="mt-2 flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900 dark:text-white">$@item.Price</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+               
+             
+            </div>
+            <div class="mt-12 flex justify-center">
+                <button class="px-8 py-3 bg-white dark:bg-[#1a2c38] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm">
+                    Daha Fazla Ürün Yükle
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#0d93f2",
+                    "background-light": "#f5f7f8",
+                    "background-dark": "#101b22",
+                },
+                fontFamily: {
+                    "display": ["Lexend", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>

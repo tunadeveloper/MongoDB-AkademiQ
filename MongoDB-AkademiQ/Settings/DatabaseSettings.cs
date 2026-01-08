@@ -6,5 +6,6 @@
         public string DatabaseName { get; set; }
         public string ProductCollection { get; set; }
         public string CategoryCollection { get; set; }
+        public string NewsletterCollection { get; set; }
     }
 }

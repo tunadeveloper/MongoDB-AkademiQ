@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using MongoDB_AkademiQ.Services.Categories;
+using MongoDB_AkademiQ.Services.Newsletters;
 using MongoDB_AkademiQ.Services.Products;
 using MongoDB_AkademiQ.Settings;
 
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<INewsletterService, NewsletterService>();
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
@@ -17,7 +19,6 @@ builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

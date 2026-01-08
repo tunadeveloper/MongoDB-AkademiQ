@@ -39,9 +39,9 @@
             <div>
                 <h3 class="text-text-main dark:text-white font-bold mb-6">Gelişmelerden Haberdar Olun</h3>
                 <p class="text-text-sub text-sm mb-4">İndirimlere ve yeni ürünlere erken erişim için abone olun.</p>
-                <form class="flex flex-col gap-3">
-                    <input class="bg-[#e7eef4] dark:bg-gray-800 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary w-full" placeholder="E-posta adresinizi girin" type="email" />
-                    <button class="bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg text-sm transition-colors" type="button">Abone Ol</button>
+                <form method="post" asp-controller="Home" asp-action="SubscribeNewsletter" class="flex flex-col gap-3">
+                    <input name="Email" class="bg-[#e7eef4] dark:bg-gray-800 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary w-full" placeholder="E-posta adresinizi girin" type="email" required />
+                    <button class="bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg text-sm transition-colors" type="submit">Abone Ol</button>
                 </form>
             </div>
         </div>
@@ -54,3 +54,36 @@
         </div>
     </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (TempData["NewsletterSuccess"] != null || TempData["NewsletterError"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (TempData["NewsletterSuccess"] != null)
+            {
+                <text>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Başarılı!',
+                    text: '@Html.Raw(TempData["NewsletterSuccess"])',
+                    confirmButtonColor: '#0d93f2',
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+                </text>
+            }
+            @if (TempData["NewsletterError"] != null)
+            {
+                <text>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata!',
+                    text: '@Html.Raw(TempData["NewsletterError"])',
+                    confirmButtonColor: '#dc2626'
+                });
+                </text>
+            }
+        });
+    </script>
+}
