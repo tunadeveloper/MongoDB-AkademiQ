@@ -1,6 +1,5 @@
 ﻿<aside class="w-64 flex-shrink-0 h-screen overflow-y-auto glass-panel border-r border-slate-200/50 dark:border-slate-800/50 flex flex-col justify-between fixed left-0 top-0 z-20">
     <div class="flex flex-col gap-6 p-6">
-        <!-- Brand -->
         <div class="flex items-center gap-3">
             <div class="bg-gradient-to-br from-primary to-blue-400 aspect-square rounded-xl size-10 flex items-center justify-center text-white shadow-lg shadow-primary/30">
                 <span class="material-symbols-outlined text-[24px]">ac_unit</span>
@@ -10,33 +9,45 @@
                 <p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Admin Console</p>
             </div>
         </div>
-        <!-- Navigation -->
         <nav class="flex flex-col gap-2 mt-4">
             <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary transition-all duration-200 group relative overflow-hidden" href="#">
                 <div class="absolute inset-0 bg-primary/10 w-0 group-hover:w-full transition-all duration-300"></div>
                 <span class="material-symbols-outlined relative z-10" style="font-variation-settings: 'FILL' 1;">dashboard</span>
                 <span class="text-sm font-semibold relative z-10">Dashboard</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
-                <span class="material-symbols-outlined">inventory_2</span>
-                <span class="text-sm font-medium">Products</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/Message/Index">
                 <span class="material-symbols-outlined">shopping_cart</span>
-                <span class="text-sm font-medium">Orders</span>
+                <span class="text-sm font-medium">Mesajlar</span>
                 <span class="ml-auto bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">12</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
-                <span class="material-symbols-outlined">group</span>
-                <span class="text-sm font-medium">Users</span>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/Product/Index">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span class="text-sm font-medium">Ürünler</span>
+                <span class="ml-auto bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">12</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
-                <span class="material-symbols-outlined">category</span>
-                <span class="text-sm font-medium">Categories</span>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/Category/Index">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-medium">Kategoriler</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="#">
-                <span class="material-symbols-outlined">reviews</span>
-                <span class="text-sm font-medium">Reviews</span>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/Newsletter/Index">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-medium">Abonelikler</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/Referance/Index">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-medium">Referanslar</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/About/Index">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-medium">Hakkımızda</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/Contact/Index">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-medium">İletişim</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-ice-blue dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-all duration-200" href="/Admin/FAQ/Index">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-sm font-medium">SSS</span>
             </a>
         </nav>
     </div>
@@ -51,7 +62,6 @@
                 <span class="text-sm font-medium">Log Out</span>
             </a>
         </div>
-        <!-- User Profile Snippet -->
         <div class="flex items-center gap-3 mt-6 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
             <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-slate-700 shadow-sm" data-alt="Portrait of admin user smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD78hZ7_lB-G8Utsdrg_BjBMnBLzWRIAfgmUpL4IAwY-Eqj3y92QYn_9YOosMJmXqD91TeyyAN5DNZ-JLgGE4-yD8rcNAG72xor79cN4zHu7Vzpk3ITHcVCvkrsompvYs-UXcwpKHBudUAyYPjz4jkPY_BjP68sk6s5q6mnpAngg0jAm5sOHJlGAo3OUOHe0r7RjLj1RZkVXiv0AHVFECzDoUb3H8YAjIwtKX2UsUhBskpEkf7vP0kWuuXyvvLCZ9qOCSL6O7bHZmo");'></div>
             <div class="flex flex-col overflow-hidden">
