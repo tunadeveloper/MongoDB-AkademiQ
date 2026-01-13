@@ -11,3 +11,35 @@
     @await Component.InvokeAsync("_LayoutFooterComponentPartial")
 </body>
 </html>
+
+@if (TempData["NewsletterSuccess"] != null || TempData["NewsletterError"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (TempData["NewsletterSuccess"] != null)
+            {
+                    <text>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı!',
+                        text: '@Html.Raw(TempData["NewsletterSuccess"])',
+                        confirmButtonColor: '#0d93f2',
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                    </text>
+            }
+            @if (TempData["NewsletterError"] != null)
+            {
+                    <text>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata!',
+                        text: '@Html.Raw(TempData["NewsletterError"])',
+                        confirmButtonColor: '#dc2626'
+                    });
+                    </text>
+            }
+        });
+    </script>
+}

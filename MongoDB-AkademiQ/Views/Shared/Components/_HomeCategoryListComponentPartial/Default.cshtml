@@ -3,12 +3,12 @@
 <section class="max-w-[1440px] mx-auto px-4 md:px-8 xl:px-20 py-16 md:py-24">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div class="space-y-4 max-w-2xl">
-            <h2 class="text-3xl md:text-4xl font-black text-text-main dark:text-white tracking-tight">Kategoriye Göre İncele</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-text-main dark:text-white tracking-tight">Kategorilere Bak!</h2>
             <p class="text-text-sub text-lg">Maceranız için hazırlanın. Pist dışı toz kardan bakımlı pistlere kadar, ihtiyacınız olan özel ekipmanlar bizde.</p>
         </div>
-        <button class="text-primary font-bold flex items-center gap-2 hover:underline whitespace-nowrap">
-            Tüm Kategorileri Gör <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
+        <a href="/Product/Index" class="text-primary font-bold flex items-center gap-2 hover:underline whitespace-nowrap">
+            Tüm Ürünleri Gör <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         @foreach(var item in Model.Take(3))

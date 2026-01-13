@@ -1,10 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
-}
-
+﻿@using MongoDB_AkademiQ.Entities
+@model About
 @{
-    ViewData["Title"] = "Ana Sayfa";
+    ViewData["Title"] = "Hakkımızda";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
@@ -38,10 +35,10 @@
                 Misyonumuz
             </div>
             <h2 class="text-3xl md:text-4xl font-bold text-[#0d161c] dark:text-white leading-tight">
-                Her maceracıyı, doğa şartlarına meydan okuyan ekipmanlarla donatmak.
+                @Model.Title
             </h2>
             <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                Dağların gücüne ve keşif ruhuna inanıyoruz. İster pistte ilk izinizi bırakın, ister bir fırtınaya göğüs gerin; SnowPeak soğuğa karşı kalkanınız, heyecanınıza ise ortağınızdır.
+                @Model.ShortDescription
             </p>
         </div>
     </section>
@@ -59,16 +56,10 @@
                 </div>
             </div>
             <div class="flex flex-col gap-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#0d161c] dark:text-white">Garajdan Zirveye</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#0d161c] dark:text-white">@Model.StoryTitle</h2>
                 <div class="space-y-4 text-slate-600 dark:text-slate-300">
                     <p>
-                        Her şey basit bir fikirle başladı: Kayak ekipmanları sadece soğukta hayatta kalmamalı; soğuğun içinde parlamalı. Ekstrem koşullarda bozulan ekipmanlardan bıkan iki profesyonel snowboardcu tarafından kurulan SnowPeak, bir tutku projesi olarak başladı.
-                    </p>
-                    <p>
-                        Bulabildiğimiz en sert zirvelerde prototipleri test ederek yıllarımızı geçirdik. Bir fermuar donarsa veya bir dikiş patlarsa, her şeye en baştan başladık. Hataya olan bu tahammülsüzlüğümüz, bizi başarıya götüren şey oldu.
-                    </p>
-                    <p>
-                        Bugün hala sporcular tarafından yönetiliyor ve aynı sözle hareket ediyoruz: Taviz yok. Sadece dağın çağrısını duyanlar için saf ve gerçek performans.
+                       @Model.StoryDescription
                     </p>
                 </div>
                 <div class="pt-4">
@@ -122,75 +113,8 @@
         </div>
     </section>
 
-    <section class="py-20 px-6 md:px-20">
-        <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-3xl font-bold text-[#0d161c] dark:text-white mb-4">Profesyonellerle Tanışın</h2>
-            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Markayı her gün tasarlayan, test eden ve onunla yaşayan ekip.</p>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            <div class="flex flex-col items-center gap-4 group">
-                <div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
-                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img alt="Alex Chen Portresi" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHa9wC3HGA8yaOvXTowUOHyI6-5ubf9sa4QBMDh2s57GRFc7bCKvw1etQJnncLoZwLdl3qC4uASAhWzHoF-_NkzhElDkKKc50q32njqJwcL30LwdqOmxR97yky8uHqXK7gy7vGqqu5lMoHynujLPkbiSFup2YpH4iNA-73wqBy8-wsHr-kFdsp05fGNhrjHtTFnU6d5ZqM2K-YDubWF-Rm5TEBcHE0ppIHGVWsCJyd7qUBAvUQO1A0Bjdf5qaUAG0ltBISCy2dT2U" />
-                </div>
-                <div class="text-center">
-                    <h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Alex Chen</h4>
-                    <p class="text-primary text-sm font-medium">Tasarım Başkanı</p>
-                </div>
-            </div>
-            <div class="flex flex-col items-center gap-4 group">
-                <div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
-                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img alt="Sarah Jenkins Portresi" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlwrOuFxqDfyYxM2n4kN7Z88EI4y1lgR0KpupHIj5-bqHYwM8FuAsZt90H-zv8yT3vgxcH-NgI57G0mvQ-lE5Ex6COp0VrwHyI8EIfu1lEL02uMp-EV6r4CIhq5X4iDVcA3hBlZohGEhvN-cO7KdDnv3F5Ly1ymFrA6JrFnDXBBsIXGNgyuS8cUE5raaDhPAgJvA4Mohb-JYb6kVBDGgYR-DPM17-JKrrnFU-XGNBOeLZHn53fn0EAQ-cmPzZSGAxRD9u-HEsky2c" />
-                </div>
-                <div class="text-center">
-                    <h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Sarah Jenkins</h4>
-                    <p class="text-primary text-sm font-medium">Baş Mühendis</p>
-                </div>
-            </div>
-            <div class="flex flex-col items-center gap-4 group">
-                <div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
-                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img alt="Marcus Thorne Portresi" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjvsFwthIAGAIt99Kw7s9kWMTklGAn-dCk0Y1PU3RLZckX76JdaFEDqkLiDuXVsbKQ9RoKP5GVQhKAj2s7jU6dhYoxlsqQqm7aYi-0Nl9HY1yfOsJ55YewGBFiLaLN9gkf3Q-sV_BC1WSzNYXgkW37LPYjjS6c6UItKfArG0Cu2kinGkcGs9c510epVhs4Ibge1q5-lteskFazr6D5GAPxr48LWoCWWNEjNFQfHse2dnDEM_Rpk7qgSnswMNh82xWOtYr68a7C6A4" />
-                </div>
-                <div class="text-center">
-                    <h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Marcus Thorne</h4>
-                    <p class="text-primary text-sm font-medium">Profesyonel Sporcu / Test Uzmanı</p>
-                </div>
-            </div>
-            <div class="flex flex-col items-center gap-4 group">
-                <div class="h-40 w-40 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 shadow-lg relative">
-                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img alt="Emily Dao Portresi" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlfseWO8OEGe4BpAvv3AU5WzBZ0pmHtARvTqdv9neQk1UMK81McCnkOw9kO9mf7whlX7s5ZLg_Cb8PB9OAO8-8v64gFGcqyZug5m-Sgal_2OZe97QWWr1RYfK3IkGAb_AxmAtGYHRUfb9nBR4DNqCP1Xb4ln8vc1AoMF0C5xekbxj_vQdn5ThW4-0RHgHaLBg-EfpPepU9lLbWvKv8KGJDYzLG76lxFUzAdp8dVvoe2MFwCu-Yv5mdDJjFbnxNVlbEbaXF7YQmb44" />
-                </div>
-                <div class="text-center">
-                    <h4 class="text-lg font-bold text-[#0d161c] dark:text-white">Emily Dao</h4>
-                    <p class="text-primary text-sm font-medium">Sürdürülebilirlik Lideri</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="relative py-24 px-6 md:px-20 overflow-hidden">
-        <div class="absolute inset-0 bg-primary z-0">
-            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-            <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-black/10 blur-3xl"></div>
-        </div>
-        <div class="relative z-10 max-w-4xl mx-auto text-center text-white">
-            <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">Taze Karın Peşinden Gitmeye Hazır mısınız?</h2>
-            <p class="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl mx-auto">
-                50.000'den fazla sporcudan oluşan topluluğumuza katılın. Yeni ürünlere, profesyonel ipuçlarına ve dağ rehberlerine özel erişim sağlayın.
-            </p>
-            <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                <input class="flex-1 px-6 py-4 rounded-lg text-slate-900 focus:outline-none focus:ring-4 focus:ring-blue-400/50 border-0" placeholder="E-posta adresinizi girin" type="email" />
-                <button class="px-8 py-4 bg-[#101b22] hover:bg-slate-900 text-white font-bold rounded-lg transition-colors shadow-xl" type="button">
-                    Maceraya Katılın
-                </button>
-            </form>
-            <p class="mt-4 text-xs text-blue-100 opacity-80">Gelen kutunuza saygı duyuyoruz. Sadece kar haberleri, spam yok.</p>
-        </div>
-    </section>
+    @await Component.InvokeAsync("_AboutTeamComponenPartial")
+    @await Component.InvokeAsync("_AboutSubscribeComponenPartial")
 </main>
 
 <script id="tailwind-config">

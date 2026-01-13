@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB_AkademiQ.Entities;
+using MongoDB_AkademiQ.Services.Abouts;
+using System.Threading.Tasks;
 
 namespace MongoDB_AkademiQ.Controllers
 {
     public class AboutController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index(About about)
         {
-            return View();
+            return View(about);
         }
     }
 }
