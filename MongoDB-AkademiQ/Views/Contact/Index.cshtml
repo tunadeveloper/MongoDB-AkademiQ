@@ -30,84 +30,10 @@
 <div class="flex-1 flex justify-center w-full px-4 md:px-10 lg:px-40 py-12">
     <div class="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-12">
         @await Component.InvokeAsync("_ContactSendMessageComponentPartial")
-        @await Component.InvokeAsync("_ContactInfoComponentPartial", new ContactInfo())
+        @await Component.InvokeAsync("_ContactInfoComponentPartial")
     </div>
 </div>
-
-<div class="bg-white dark:bg-slate-800/30 border-t border-slate-200 dark:border-slate-800 py-16">
-    <div class="px-4 md:px-10 lg:px-40 flex justify-center">
-        <div class="w-full max-w-[900px] flex flex-col gap-10">
-            <div class="text-center">
-                <h2 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight mb-3">Sıkça Sorulan Sorular</h2>
-                <p class="text-slate-500 dark:text-slate-400">Aradığınız cevabın burada olup olmadığını kontrol ederek zaman kazanabilirsiniz.</p>
-            </div>
-            <div class="grid gap-4">
-                <details class="group bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="flex items-center justify-between font-bold text-slate-900 dark:text-white list-none">
-                        <span>Siparişimi nasıl takip edebilirim?</span>
-                        <span class="transition group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
-                        Siparişiniz kargoya verildiğinde, takip bağlantısı içeren bir e-posta alacaksınız. Ayrıca hesap panelinize giriş yaparak sipariş durumunuzu görüntüleyebilirsiniz.
-                    </p>
-                </details>
-                <details class="group bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="flex items-center justify-between font-bold text-slate-900 dark:text-white list-none">
-                        <span>Kayak ekipmanları için iade politikanız nedir?</span>
-                        <span class="transition group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
-                        Kullanılmamış ekipmanların iadesini satın alma tarihinden itibaren 30 gün içinde kabul ediyoruz. Ürünler orijinal ambalajında olmalıdır. Kişiye özel montajı yapılmış kayaklar iade kapsamı dışındadır.
-                    </p>
-                </details>
-                <details class="group bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="flex items-center justify-between font-bold text-slate-900 dark:text-white list-none">
-                        <span>Uluslararası gönderim yapıyor musunuz?</span>
-                        <span class="transition group-open:rotate-180">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
-                        Evet, kış sporları destinasyonu olan çoğu ülkeye gönderim yapıyoruz. Kargo ücretleri ve teslimat süreleri konuma göre değişir ve ödeme sayfasında hesaplanır.
-                    </p>
-                </details>
-            </div>
-            <div class="text-center pt-4">
-                <a class="inline-flex items-center gap-2 text-primary font-bold hover:underline" href="#">
-                    Tüm S.S.S.'leri Görüntüle
-                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-@if (TempData["MessageSuccess"] != null)
-{
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            @if (TempData["MessageSuccess"] != null)
-            {
-                        <text>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Başarılı!',
-                            text: '@Html.Raw(TempData["MessageSuccess"])',
-                            confirmButtonColor: '#0d93f2',
-                            timer: 3000,
-                            timerProgressBar: true
-                        });
-                        </text>
-            }
-        });
-    </script>
-}
-
-
+@await Component.InvokeAsync("_ContactFAQComponentPartial")
 
 <style>
     .material-symbols-outlined {

@@ -18,6 +18,16 @@ namespace MongoDB_AkademiQ.ViewComponents.Contact
             var list = await _contactInfoService.GetAllAsync();
             var result = list.FirstOrDefault();
 
+            if (result == null)
+            {
+                result = new DTOs.ContactInfoDTOs.ResultContactInfoDTO
+                {
+                    Address = string.Empty,
+                    PhoneNumber = string.Empty,
+                    Email = string.Empty
+                };
+            }
+
             return View(result);
         }
     }
