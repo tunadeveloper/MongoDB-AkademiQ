@@ -31,5 +31,17 @@ namespace MongoDB_AkademiQ.Controllers
 
             return View(values);
         }
+
+        public async Task<IActionResult> ProductDetails(string id)
+        {
+            var product = await _productService.GetByIdForDisplayAsync(id);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            return View(product);
+        }
     }
 }

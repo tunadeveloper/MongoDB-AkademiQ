@@ -142,4 +142,15 @@ public class ProductService : GenericService<Product, CreateProductDTO, UpdatePr
             .GroupBy(p => p.CategoryId)
             .ToDictionary(g => g.Key!, g => g.Count());
     }
+
+    public async Task<ResultProductDTO?> GetByIdForDisplayAsync(string id)
+    {
+        var filter = Builders<Product>.Filter.Eq("Id", id);
+        var product = await _mongoCollection.Find(filter).FirstOrDefaultAsync();
+        
+        if (product == null)
+            return null;
+            
+        return MapToResultDTO(product);
+    }
 }

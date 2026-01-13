@@ -9,5 +9,6 @@ namespace MongoDB_AkademiQ.Services.Products
         Task<List<ResultProductDTO>> SearchAsync(string searchTerm);
         Task<List<ResultProductDTO>> GetFilteredAsync(List<string>? categoryIds, decimal? minPrice, decimal? maxPrice, string? sort);
         Task<Dictionary<string, int>> GetCategoryProductCountsAsync();
+        Task<ResultProductDTO?> GetByIdForDisplayAsync(string id);
     }
 }

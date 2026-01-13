@@ -1,0 +1,26 @@
+﻿@using MongoDB_AkademiQ.DTOs.ProductDTOs
+@model List<ResultProductDTO>
+<div class="mt-20">
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8">Ekipmanınızı Tamamlayın</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        @foreach(var item in Model.Where(x=>x.IsPopular == true).Take(4))
+        {
+            <div class="group flex flex-col gap-3">
+                <div class="aspect-[4/5] bg-white dark:bg-surface-dark rounded-xl overflow-hidden relative shadow-sm hover:shadow-md transition-all">
+                    <img alt="@item.Name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="@item.ImageUrl" />
+                    <button class="absolute top-3 right-3 p-2 bg-white/90 rounded-full text-slate-400 hover:text-red-500 transition-colors">
+                        <span class="material-symbols-outlined text-sm">favorite</span>
+                    </button>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors cursor-pointer">@item.Name</h3>
+                    <p class="text-slate-900 dark:text-white font-semibold mt-1">$@item.Price</p>
+                    <button class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-3 rounded-lg font-bold text-sm shadow-lg hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+                        Sepete Ekle
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

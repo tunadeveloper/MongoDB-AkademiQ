@@ -157,10 +157,14 @@
                             </div>
                         </div>
                         <div class="p-4 flex flex-col gap-1.5">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight group-hover:text-primary transition-colors">@item.Name</h3>
+                            <a href="/Product/ProductDetails/@item.Id" class="font-bold text-slate-900 dark:text-white text-lg leading-tight group-hover:text-primary transition-colors">@item.Name</a>
                             <p class="text-sm text-slate-500 dark:text-slate-400">All-Mountain / Serbest Stil</p>
                             <div class="mt-2 flex items-center justify-between">
                                 <span class="text-xl font-bold text-slate-900 dark:text-white">$@item.Price</span>
+                                <a href="/Product/ProductDetails/@item.Id"
+                                   class="bg-primary text-white dark:text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-primary/80 transition-colors">
+                                    Ürüne Git
+                                </a>
                             </div>
                         </div>
                     </div>
