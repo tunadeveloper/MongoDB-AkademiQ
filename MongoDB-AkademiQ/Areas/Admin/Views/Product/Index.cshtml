@@ -1,10 +1,9 @@
+@using System.Globalization
 @model List<ResultProductDTO>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
 }
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
 <div x-data="{ open:false, editMode:false, productId:'', productName:'', productImage:'', productDesc:'', productPrice:'', productIsPopular:false, productCategoryId:'' }"
      class="flex-1 overflow-y-auto p-8 pb-20">
 
@@ -44,7 +43,7 @@
                                          class="w-12 h-12 rounded-full object-cover border border-slate-200 dark:border-slate-700 shadow-sm" />
                                 </td>
                                 <td class="py-4 text-slate-600 dark:text-slate-400">@item.Name</td>
-                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Price.ToString("C")</td>
+                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Price.ToString("C", new CultureInfo("en-US"))</td>
                                 <td class="py-4 text-slate-600 dark:text-slate-400">@(item.Description is null ? "Açıklama Yok" : item.Description.Length >= 40 ? item.Description.Substring(0,40) + "..." : item.Description) </td>
                                 <td class="py-4 text-slate-600 dark:text-slate-400">
                                     @if (item.IsPopular)
