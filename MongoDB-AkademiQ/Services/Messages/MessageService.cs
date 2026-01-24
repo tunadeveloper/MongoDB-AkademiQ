@@ -1,3 +1,4 @@
+using MongoDB.Driver;
 using MongoDB_AkademiQ.DTOs.MessageDTOs;
 using MongoDB_AkademiQ.Entities;
 using MongoDB_AkademiQ.Services.Generic;
@@ -7,37 +8,43 @@ namespace MongoDB_AkademiQ.Services.Messages;
 
 public class MessageService : GenericService<Message, CreateMessageDTO, UpdateMessageDTO, ResultMessageDTO>, IMessageService
 {
-    public MessageService(IDatabaseSettings databaseSettings)
-        : base(databaseSettings, databaseSettings.MessageCollection)
+    public MessageService(IDatabaseSettings settings) : base(settings, settings.MessageCollection)
     {
     }
 
-    protected override Message MapToEntity(CreateMessageDTO createDTO)
+    public async Task MarkAsReadAsync(string id)
+    {
+        var filter = Builders<Message>.Filter.Eq("Id", id);
+        var update = Builders<Message>.Update.Set("IsRead", true);
+        await _collection.UpdateOneAsync(filter, update);
+    }
+
+    protected override Message MapToEntity(CreateMessageDTO dto)
     {
         return new Message
         {
-            Name = createDTO.Name,
-            Surname = createDTO.Surname,
-            Email = createDTO.Email,
-            Subject = createDTO.Subject,
-            Content = createDTO.Content,
+            Name = dto.Name,
+            Surname = dto.Surname,
+            Email = dto.Email,
+            Subject = dto.Subject,
+            Content = dto.Content,
             SendDate = DateTime.Now,
             IsRead = false
         };
     }
 
-    protected override Message MapToEntity(UpdateMessageDTO updateDTO)
+    protected override Message MapToEntity(UpdateMessageDTO dto)
     {
         return new Message
         {
-            Id = updateDTO.Id,
-            Name = updateDTO.Name,
-            Surname = updateDTO.Surname,
-            Email = updateDTO.Email,
-            Subject = updateDTO.Subject,
-            Content = updateDTO.Content,
-            SendDate = updateDTO.SendDate,
-            IsRead = updateDTO.IsRead
+            Id = dto.Id,
+            Name = dto.Name,
+            Surname = dto.Surname,
+            Email = dto.Email,
+            Subject = dto.Subject,
+            Content = dto.Content,
+            SendDate = dto.SendDate,
+            IsRead = dto.IsRead
         };
     }
 
@@ -71,8 +78,8 @@ public class MessageService : GenericService<Message, CreateMessageDTO, UpdateMe
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateMessageDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateMessageDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

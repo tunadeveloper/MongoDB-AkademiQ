@@ -3,87 +3,82 @@ using MongoDB_AkademiQ.DTOs.AdminDTOs;
 using MongoDB_AkademiQ.Services.Generic;
 using MongoDB_AkademiQ.Settings;
 
-namespace MongoDB_AkademiQ.Services.Admin
+namespace MongoDB_AkademiQ.Services.Admin;
+
+public class AdminService : GenericService<Entities.Admin, CreateAdminDTO, UpdateAdminDTO, ResultAdminDTO>, IAdminService
 {
-    public class AdminService : GenericService<Entities.Admin, CreateAdminDTO, UpdateAdminDTO, ResultAdminDTO>, IAdminService
+    public AdminService(IDatabaseSettings settings) : base(settings, settings.AdminCollection)
     {
-        private readonly IMongoCollection<Entities.Admin> _adminCollection;
+    }
 
-        public AdminService(IDatabaseSettings databaseSettings)
-            : base(databaseSettings, databaseSettings.AdminCollection)
+    public async Task<ResultAdminDTO?> GetByUsernameAsync(string username)
+    {
+        var filter = Builders<Entities.Admin>.Filter.Eq(a => a.Username, username);
+        var admin = await _collection.Find(filter).FirstOrDefaultAsync();
+        return admin != null ? MapToResultDTO(admin) : null;
+    }
+
+    public async Task<ResultAdminDTO?> ValidateAsync(string username, string password)
+    {
+        var filter = Builders<Entities.Admin>.Filter.And(
+            Builders<Entities.Admin>.Filter.Eq(a => a.Username, username),
+            Builders<Entities.Admin>.Filter.Eq(a => a.Password, password),
+            Builders<Entities.Admin>.Filter.Eq(a => a.IsVerified, true)
+        );
+
+        var admin = await _collection.Find(filter).FirstOrDefaultAsync();
+        return admin != null ? MapToResultDTO(admin) : null;
+    }
+
+    protected override Entities.Admin MapToEntity(CreateAdminDTO dto)
+    {
+        return new Entities.Admin
         {
-            var client = new MongoClient(databaseSettings.ConnectionString);
-            var database = client.GetDatabase(databaseSettings.DatabaseName);
-            _adminCollection = database.GetCollection<Entities.Admin>(databaseSettings.AdminCollection);
-        }
+            NameSurname = dto.NameSurname,
+            Username = dto.Username,
+            Password = dto.Password,
+            IsVerified = dto.IsVerified
+        };
+    }
 
-        public async Task<ResultAdminDTO?> GetByUsernameAsync(string username)
+    protected override Entities.Admin MapToEntity(UpdateAdminDTO dto)
+    {
+        return new Entities.Admin
         {
-            var admin = await _adminCollection.Find(x => x.Username == username).FirstOrDefaultAsync();
-            if (admin == null) return null;
+            Id = dto.Id,
+            NameSurname = dto.NameSurname,
+            Username = dto.Username,
+            Password = dto.Password,
+            IsVerified = dto.IsVerified
+        };
+    }
 
-            return MapToResultDTO(admin);
-        }
-
-        public async Task<ResultAdminDTO?> ValidateAdminAsync(string username, string password)
+    protected override ResultAdminDTO MapToResultDTO(Entities.Admin entity)
+    {
+        return new ResultAdminDTO
         {
-            // Not: Gerçek uygulamalarda şifre hashlenmeli (BCrypt, Argon2, vb.)
-            var admin = await _adminCollection.Find(x => x.Username == username && x.Password == password && x.IsVerified).FirstOrDefaultAsync();
-            if (admin == null) return null;
+            Id = entity.Id,
+            NameSurname = entity.NameSurname,
+            Username = entity.Username,
+            Password = entity.Password,
+            IsVerified = entity.IsVerified
+        };
+    }
 
-            return MapToResultDTO(admin);
-        }
-
-        protected override Entities.Admin MapToEntity(CreateAdminDTO dto)
+    protected override UpdateAdminDTO MapToUpdateDTO(Entities.Admin entity)
+    {
+        return new UpdateAdminDTO
         {
-            return new Entities.Admin
-            {
-                NameSurname = dto.NameSurname,
-                Username = dto.Username,
-                Password = dto.Password, // Şifre hashlenmelidir!
-                IsVerified = dto.IsVerified
-            };
-        }
+            Id = entity.Id,
+            NameSurname = entity.NameSurname,
+            Username = entity.Username,
+            Password = entity.Password,
+            IsVerified = entity.IsVerified
+        };
+    }
 
-        protected override Entities.Admin MapToEntity(UpdateAdminDTO dto)
-        {
-            return new Entities.Admin
-            {
-                Id = dto.Id,
-                NameSurname = dto.NameSurname,
-                Username = dto.Username,
-                Password = dto.Password, // Şifre hashlenmelidir!
-                IsVerified = dto.IsVerified
-            };
-        }
-
-        protected override ResultAdminDTO MapToResultDTO(Entities.Admin entity)
-        {
-            return new ResultAdminDTO
-            {
-                Id = entity.Id,
-                NameSurname = entity.NameSurname,
-                Username = entity.Username,
-                Password = entity.Password, // Gerçek uygulamalarda şifreyi döndürmeyin!
-                IsVerified = entity.IsVerified
-            };
-        }
-
-        protected override UpdateAdminDTO MapToUpdateDTO(Entities.Admin entity)
-        {
-            return new UpdateAdminDTO
-            {
-                Id = entity.Id,
-                NameSurname = entity.NameSurname,
-                Username = entity.Username,
-                Password = entity.Password,
-                IsVerified = entity.IsVerified
-            };
-        }
-
-        protected override string GetIdFromUpdateDTO(UpdateAdminDTO updateDTO)
-        {
-            return updateDTO.Id;
-        }
+    protected override string GetIdFromUpdateDTO(UpdateAdminDTO dto)
+    {
+        return dto.Id;
     }
 }

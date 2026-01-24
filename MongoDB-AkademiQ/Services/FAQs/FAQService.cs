@@ -7,27 +7,26 @@ namespace MongoDB_AkademiQ.Services.FAQs;
 
 public class FAQService : GenericService<FAQ, CreateFAQDTO, UpdateFAQDTO, ResultFAQDTO>, IFAQService
 {
-    public FAQService(IDatabaseSettings databaseSettings)
-        : base(databaseSettings, databaseSettings.FAQCollection)
+    public FAQService(IDatabaseSettings settings) : base(settings, settings.FAQCollection)
     {
     }
 
-    protected override FAQ MapToEntity(CreateFAQDTO createDTO)
+    protected override FAQ MapToEntity(CreateFAQDTO dto)
     {
         return new FAQ
         {
-            Question = createDTO.Question,
-            Answer = createDTO.Answer
+            Question = dto.Question,
+            Answer = dto.Answer
         };
     }
 
-    protected override FAQ MapToEntity(UpdateFAQDTO updateDTO)
+    protected override FAQ MapToEntity(UpdateFAQDTO dto)
     {
         return new FAQ
         {
-            Id = updateDTO.Id,
-            Question = updateDTO.Question,
-            Answer = updateDTO.Answer
+            Id = dto.Id,
+            Question = dto.Question,
+            Answer = dto.Answer
         };
     }
 
@@ -51,8 +50,8 @@ public class FAQService : GenericService<FAQ, CreateFAQDTO, UpdateFAQDTO, Result
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateFAQDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateFAQDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

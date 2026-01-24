@@ -7,29 +7,28 @@ namespace MongoDB_AkademiQ.Services.ContactInfos;
 
 public class ContactInfoService : GenericService<ContactInfo, CreateContactInfoDTO, UpdateContactInfoDTO, ResultContactInfoDTO>, IContactInfoService
 {
-    public ContactInfoService(IDatabaseSettings databaseSettings)
-        : base(databaseSettings, databaseSettings.ContactInfoCollection)
+    public ContactInfoService(IDatabaseSettings settings) : base(settings, settings.ContactInfoCollection)
     {
     }
 
-    protected override ContactInfo MapToEntity(CreateContactInfoDTO createDTO)
+    protected override ContactInfo MapToEntity(CreateContactInfoDTO dto)
     {
         return new ContactInfo
         {
-            Address = createDTO.Address,
-            PhoneNumber = createDTO.PhoneNumber,
-            Email = createDTO.Email
+            Address = dto.Address,
+            PhoneNumber = dto.PhoneNumber,
+            Email = dto.Email
         };
     }
 
-    protected override ContactInfo MapToEntity(UpdateContactInfoDTO updateDTO)
+    protected override ContactInfo MapToEntity(UpdateContactInfoDTO dto)
     {
         return new ContactInfo
         {
-            Id = updateDTO.Id,
-            Address = updateDTO.Address,
-            PhoneNumber = updateDTO.PhoneNumber,
-            Email = updateDTO.Email
+            Id = dto.Id,
+            Address = dto.Address,
+            PhoneNumber = dto.PhoneNumber,
+            Email = dto.Email
         };
     }
 
@@ -55,8 +54,8 @@ public class ContactInfoService : GenericService<ContactInfo, CreateContactInfoD
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateContactInfoDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateContactInfoDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

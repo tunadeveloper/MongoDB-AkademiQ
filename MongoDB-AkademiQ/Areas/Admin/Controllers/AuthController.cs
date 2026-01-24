@@ -23,7 +23,7 @@ namespace MongoDB_AkademiQ.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            var admin = await _adminService.ValidateAdminAsync(username, password);
+            var admin = await _adminService.ValidateAsync(username, password);
             
             if (admin != null)
             {

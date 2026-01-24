@@ -1,17 +1,16 @@
 ﻿@using MongoDB_AkademiQ.DTOs.MessageDTOs
 @model List<ResultMessageDTO>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Mesajlar";
     Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
 }
-<div x-data="{ open:false, editMode:false, productId:'', productName:'', productImage:'', productDesc:'', productPrice:'', productIsPopular:false, productCategoryId:'' }"
-     class="flex-1 overflow-y-auto p-8 pb-20">
 
+<div class="flex-1 overflow-y-auto p-8 pb-20">
     <div class="max-w-7xl mx-auto space-y-8">
-
-        <div class="glass-panel rounded-2xl p-6 shadow-sm flex-[2] border border-white dark:border-slate-800">
+        <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white">Mesaj Kutusu</h3>
+                <span class="text-sm text-slate-500 dark:text-slate-400">Toplam @Model.Count mesaj</span>
             </div>
 
             <div class="overflow-x-auto">
@@ -19,46 +18,230 @@
                     <thead>
                         <tr class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
                             <th class="pb-3">İsim Soyisim</th>
-                            <th class="pb-3">E-Posta Adresi</th>
+                            <th class="pb-3">E-Posta</th>
                             <th class="pb-3">Konu</th>
+                            <th class="pb-3">Tarih</th>
                             <th class="pb-3">Durum</th>
-                            <th class="pb-3">Sil</th>
-                            <th class="pb-3">Mesajı Aç</th>
+                            <th class="pb-3 text-center">İşlemler</th>
                         </tr>
                     </thead>
 
                     <tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-700/50">
-                        @foreach (var item in Model)
+                        @if (Model != null && Model.Any())
                         {
-                            <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                               
-                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Name @item.Surname</td>
-                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Email</td>
-                                <td class="py-4 text-slate-600 dark:text-slate-400">@item.Subject</td>
-                               <td class="py-4 text-slate-600 dark:text-slate-400">
-                                    @if (item.IsRead)
-                                    {
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-black-100 text-black-800 dark:bg-black-900/30 dark:text-black-400">Okundu</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Okunmadı</span>
-                                    }
-                                </td>
-
-                                <td class="py-4">
-                                    <a href="/Admin/Product/DeleteProduct/@item.Id"
-                                       class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
-                                        Sil
-                                    </a>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 text-slate-600 dark:text-slate-400 font-medium">@item.Name @item.Surname</td>
+                                    <td class="py-4 text-slate-600 dark:text-slate-400">@item.Email</td>
+                                    <td class="py-4 text-slate-600 dark:text-slate-400">@item.Subject</td>
+                                    <td class="py-4 text-slate-600 dark:text-slate-400">@item.SendDate.ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td class="py-4">
+                                        @if (item.IsRead)
+                                        {
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Okundu</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Okunmadı</span>
+                                        }
+                                    </td>
+                                    <td class="py-4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <button type="button" onclick="openMessage(this)" 
+                                                    data-message-id="@item.Id"
+                                                    class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">
+                                                <span class="material-symbols-outlined text-sm mr-1">visibility</span>
+                                                Aç
+                                            </button>
+                                            <button type="button" onclick="deleteMessage(this)" 
+                                                    data-message-id="@item.Id"
+                                                    class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+                                                <span class="material-symbols-outlined text-sm mr-1">delete</span>
+                                                Sil
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="py-8 text-center text-slate-500 dark:text-slate-400">
+                                    Henüz mesaj bulunmamaktadır.
                                 </td>
                             </tr>
                         }
                     </tbody>
-
                 </table>
             </div>
         </div>
     </div>
-    @await Component.InvokeAsync("_CreateProductComponentPartial")
 </div>
+
+<div id="messageModal" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="p-6 border-b border-slate-200 dark:border-slate-700">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mesaj Detayları</h3>
+                <button onclick="closeModal()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        </div>
+        <div class="p-6 space-y-4" id="messageContent">
+        </div>
+        <div class="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
+            <button onclick="closeModal()" class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+                Kapat
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function openMessage(button) {
+        const id = button.getAttribute('data-message-id');
+        console.log('Opening message with ID:', id);
+        
+        if (!id) {
+            alert('Mesaj ID bulunamadı!');
+            return;
+        }
+        
+        fetch('/Admin/Message/GetMessageDetails?id=' + id)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const msg = data.message;
+                    const content = `
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Gönderen</label>
+                                <p class="mt-1 text-sm font-medium text-slate-900 dark:text-white">${msg.name} ${msg.surname}</p>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">E-Posta</label>
+                                <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">${msg.email}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Konu</label>
+                            <p class="mt-1 text-sm font-medium text-slate-900 dark:text-white">${msg.subject}</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tarih</label>
+                            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">${msg.sendDate}</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mesaj İçeriği</label>
+                            <div class="mt-2 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                                <p class="text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap">${msg.content}</p>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('messageContent').innerHTML = content;
+                    document.getElementById('messageModal').style.display = 'flex';
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata!',
+                        text: data.message,
+                        confirmButtonColor: '#dc2626'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata!',
+                    text: 'Mesaj yüklenirken bir hata oluştu.',
+                    confirmButtonColor: '#dc2626'
+                });
+            });
+    }
+
+    function closeModal() {
+        document.getElementById('messageModal').style.display = 'none';
+        // Modal kapandıktan sonra sayfayı yenile
+        location.reload();
+    }
+
+    function deleteMessage(button) {
+        const id = button.getAttribute('data-message-id');
+        console.log('Deleting message with ID:', id);
+        console.log('ID type:', typeof id);
+        console.log('ID value:', id);
+        
+        if (!id || id === '' || id === 'null' || id === 'undefined') {
+            alert('Mesaj ID bulunamadı! ID: ' + id);
+            return;
+        }
+        
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: 'Bu mesajı silmek istediğinize emin misiniz?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Evet, Sil',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('/Admin/Message/DeleteMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Başarılı!',
+                            text: data.message,
+                            confirmButtonColor: '#0d93f2',
+                            timer: 2000,
+                            timerProgressBar: true
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata!',
+                            text: data.message,
+                            confirmButtonColor: '#dc2626'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Hata:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata!',
+                        text: 'Silme işlemi sırasında bir hata oluştu: ' + error.message,
+                        confirmButtonColor: '#dc2626'
+                    });
+                });
+            }
+        });
+    }
+
+    // Modal dışına tıklanınca kapat
+    document.getElementById('messageModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+</script>

@@ -6,4 +6,5 @@ namespace MongoDB_AkademiQ.Services.Messages;
 
 public interface IMessageService : IGenericService<Message, CreateMessageDTO, UpdateMessageDTO, ResultMessageDTO>
 {
+    Task MarkAsReadAsync(string id);
 }

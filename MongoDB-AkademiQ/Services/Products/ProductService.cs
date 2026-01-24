@@ -1,42 +1,114 @@
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using MongoDB_AkademiQ.DTOs.ProductDTOs;
 using MongoDB_AkademiQ.Entities;
 using MongoDB_AkademiQ.Services.Generic;
 using MongoDB_AkademiQ.Settings;
-using MongoDB.Driver;
 
 namespace MongoDB_AkademiQ.Services.Products;
 
 public class ProductService : GenericService<Product, CreateProductDTO, UpdateProductDTO, ResultProductDTO>, IProductService
 {
-    public ProductService(IDatabaseSettings databaseSettings) 
-        : base(databaseSettings, databaseSettings.ProductCollection)
+    public ProductService(IDatabaseSettings settings) : base(settings, settings.ProductCollection)
     {
     }
 
-    protected override Product MapToEntity(CreateProductDTO createDTO)
+    public async Task<List<ResultProductDTO>> SearchAsync(string searchTerm)
+    {
+        var filter = Builders<Product>.Filter.Or(
+            Builders<Product>.Filter.Regex("Name", new MongoDB.Bson.BsonRegularExpression(searchTerm, "i")),
+            Builders<Product>.Filter.Regex("Description", new MongoDB.Bson.BsonRegularExpression(searchTerm, "i"))
+        );
+
+        var products = await _collection.Find(filter).ToListAsync();
+        return products.Select(MapToResultDTO).ToList();
+    }
+
+    public async Task<List<ResultProductDTO>> GetFilteredAsync(List<string>? categoryIds, decimal? minPrice, decimal? maxPrice, string? sort)
+    {
+        var filterDefinitions = new List<FilterDefinition<Product>>();
+
+        if (categoryIds != null && categoryIds.Any())
+        {
+            filterDefinitions.Add(Builders<Product>.Filter.In("CategoryName", categoryIds));
+        }
+
+        if (minPrice.HasValue)
+        {
+            filterDefinitions.Add(Builders<Product>.Filter.Gte("Price", minPrice.Value));
+        }
+
+        if (maxPrice.HasValue)
+        {
+            filterDefinitions.Add(Builders<Product>.Filter.Lte("Price", maxPrice.Value));
+        }
+
+        var filter = filterDefinitions.Any()
+            ? Builders<Product>.Filter.And(filterDefinitions)
+            : Builders<Product>.Filter.Empty;
+
+        var query = _collection.Find(filter);
+
+        if (sort == "price_asc")
+        {
+            query = query.SortBy(p => p.Price);
+        }
+        else if (sort == "price_desc")
+        {
+            query = query.SortByDescending(p => p.Price);
+        }
+        else if (sort == "name_asc")
+        {
+            query = query.SortBy(p => p.Name);
+        }
+        else if (sort == "name_desc")
+        {
+            query = query.SortByDescending(p => p.Name);
+        }
+
+        var products = await query.ToListAsync();
+        return products.Select(MapToResultDTO).ToList();
+    }
+
+    public async Task<Dictionary<string, int>> GetCategoryProductCountsAsync()
+    {
+        var products = await _collection.AsQueryable().ToListAsync();
+        return products
+            .GroupBy(p => p.CategoryName)
+            .ToDictionary(g => g.Key, g => g.Count());
+    }
+
+    public async Task<ResultProductDTO?> GetByIdForDisplayAsync(string id)
+    {
+        var filter = Builders<Product>.Filter.Eq("Id", id);
+        var product = await _collection.Find(filter).FirstOrDefaultAsync();
+        return product != null ? MapToResultDTO(product) : null;
+    }
+
+    protected override Product MapToEntity(CreateProductDTO dto)
     {
         return new Product
         {
-            Name = createDTO.Name,
-            Description = createDTO.Description,
-            ImageUrl = createDTO.ImageUrl,
-            Price = createDTO.Price,
-            IsPopular = createDTO.IsPopular,
-            CategoryName = createDTO.CategoryId
+            Name = dto.Name,
+            Description = dto.Description,
+            ImageUrl = dto.ImageUrl,
+            Price = dto.Price,
+            IsPopular = dto.IsPopular,
+            CategoryName = dto.CategoryId
         };
     }
 
-    protected override Product MapToEntity(UpdateProductDTO updateDTO)
+    protected override Product MapToEntity(UpdateProductDTO dto)
     {
         return new Product
         {
-            Id = updateDTO.Id,
-            Name = updateDTO.Name,
-            Description = updateDTO.Description,
-            ImageUrl = updateDTO.ImageUrl,
-            Price = updateDTO.Price,
-            IsPopular = updateDTO.IsPopular,
-            CategoryName = updateDTO.CategoryId
+            Id = dto.Id,
+            Name = dto.Name,
+            Description = dto.Description,
+            ImageUrl = dto.ImageUrl,
+            Price = dto.Price,
+            IsPopular = dto.IsPopular,
+            CategoryName = dto.CategoryId
         };
     }
 
@@ -68,89 +140,8 @@ public class ProductService : GenericService<Product, CreateProductDTO, UpdatePr
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateProductDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateProductDTO dto)
     {
-        return updateDTO.Id;
-    }
-
-    public async Task<List<ResultProductDTO>> SearchAsync(string searchTerm)
-    {
-        if (string.IsNullOrWhiteSpace(searchTerm))
-            return new List<ResultProductDTO>();
-
-        var filter = Builders<Product>.Filter.Or(
-            Builders<Product>.Filter.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(searchTerm, "i")),
-            Builders<Product>.Filter.Regex(p => p.Description, new MongoDB.Bson.BsonRegularExpression(searchTerm, "i"))
-        );
-
-        var products = await _mongoCollection.Find(filter).ToListAsync();
-        return products.Select(MapToResultDTO).ToList();
-    }
-
-    public async Task<List<ResultProductDTO>> GetFilteredAsync(List<string>? categoryIds, decimal? minPrice, decimal? maxPrice, string? sort)
-    {
-        var allProducts = await GetAllAsync();
-        var filteredProducts = allProducts.AsEnumerable();
-
-        if (categoryIds != null && categoryIds.Count > 0)
-        {
-            filteredProducts = filteredProducts.Where(x => x.CategoryId != null && categoryIds.Contains(x.CategoryId));
-        }
-
-        if (minPrice.HasValue)
-        {
-            filteredProducts = filteredProducts.Where(x => x.Price >= minPrice.Value);
-        }
-
-        if (maxPrice.HasValue)
-        {
-            filteredProducts = filteredProducts.Where(x => x.Price <= maxPrice.Value);
-        }
-
-        var result = filteredProducts.ToList();
-
-        switch (sort)
-        {
-            case "price-asc":
-                result = result.OrderBy(x => x.Price).ToList();
-                break;
-            case "price-desc":
-                result = result.OrderByDescending(x => x.Price).ToList();
-                break;
-            case "popular":
-                result = result.OrderByDescending(x => x.IsPopular).ThenBy(x => x.Name).ToList();
-                break;
-            case "name-asc":
-                result = result.OrderBy(x => x.Name).ToList();
-                break;
-            case "name-desc":
-                result = result.OrderByDescending(x => x.Name).ToList();
-                break;
-            default:
-                result = result.OrderByDescending(x => x.IsPopular).ThenBy(x => x.Name).ToList();
-                break;
-        }
-
-        return result;
-    }
-
-    public async Task<Dictionary<string, int>> GetCategoryProductCountsAsync()
-    {
-        var allProducts = await GetAllAsync();
-        return allProducts
-            .Where(p => !string.IsNullOrEmpty(p.CategoryId))
-            .GroupBy(p => p.CategoryId)
-            .ToDictionary(g => g.Key!, g => g.Count());
-    }
-
-    public async Task<ResultProductDTO?> GetByIdForDisplayAsync(string id)
-    {
-        var filter = Builders<Product>.Filter.Eq("Id", id);
-        var product = await _mongoCollection.Find(filter).FirstOrDefaultAsync();
-        
-        if (product == null)
-            return null;
-            
-        return MapToResultDTO(product);
+        return dto.Id;
     }
 }

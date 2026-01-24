@@ -7,31 +7,30 @@ namespace MongoDB_AkademiQ.Services.Abouts;
 
 public class AboutService : GenericService<About, CreateAboutDTO, UpdateAboutDTO, ResultAboutDTO>, IAboutService
 {
-    public AboutService(IDatabaseSettings databaseSettings)
-        : base(databaseSettings, databaseSettings.AboutCollection)
+    public AboutService(IDatabaseSettings settings) : base(settings, settings.AboutCollection)
     {
     }
 
-    protected override About MapToEntity(CreateAboutDTO createDTO)
+    protected override About MapToEntity(CreateAboutDTO dto)
     {
         return new About
         {
-            Title = createDTO.Title,
-            ShortDescription = createDTO.ShortDescription,
-            StoryTitle = createDTO.StoryTitle,
-            StoryDescription = createDTO.StoryDescription
+            Title = dto.Title,
+            ShortDescription = dto.ShortDescription,
+            StoryTitle = dto.StoryTitle,
+            StoryDescription = dto.StoryDescription
         };
     }
 
-    protected override About MapToEntity(UpdateAboutDTO updateDTO)
+    protected override About MapToEntity(UpdateAboutDTO dto)
     {
         return new About
         {
-            Id = updateDTO.Id,
-            Title = updateDTO.Title,
-            ShortDescription = updateDTO.ShortDescription,
-            StoryTitle = updateDTO.StoryTitle,
-            StoryDescription = updateDTO.StoryDescription
+            Id = dto.Id,
+            Title = dto.Title,
+            ShortDescription = dto.ShortDescription,
+            StoryTitle = dto.StoryTitle,
+            StoryDescription = dto.StoryDescription
         };
     }
 
@@ -59,8 +58,8 @@ public class AboutService : GenericService<About, CreateAboutDTO, UpdateAboutDTO
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateAboutDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateAboutDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

@@ -7,29 +7,28 @@ namespace MongoDB_AkademiQ.Services.Teams;
 
 public class TeamService : GenericService<Team, CreateTeamDTO, UpdateTeamDTO, ResultTeamDTO>, ITeamService
 {
-    public TeamService(IDatabaseSettings databaseSettings)
-        : base(databaseSettings, databaseSettings.TeamCollection)
+    public TeamService(IDatabaseSettings settings) : base(settings, settings.TeamCollection)
     {
     }
 
-    protected override Team MapToEntity(CreateTeamDTO createDTO)
+    protected override Team MapToEntity(CreateTeamDTO dto)
     {
         return new Team
         {
-            NameSurname = createDTO.NameSurname,
-            PositionName = createDTO.PositionName,
-            ImageUrl = createDTO.ImageUrl
+            NameSurname = dto.NameSurname,
+            PositionName = dto.PositionName,
+            ImageUrl = dto.ImageUrl
         };
     }
 
-    protected override Team MapToEntity(UpdateTeamDTO updateDTO)
+    protected override Team MapToEntity(UpdateTeamDTO dto)
     {
         return new Team
         {
-            Id = updateDTO.Id,
-            NameSurname = updateDTO.NameSurname,
-            PositionName = updateDTO.PositionName,
-            ImageUrl = updateDTO.ImageUrl
+            Id = dto.Id,
+            NameSurname = dto.NameSurname,
+            PositionName = dto.PositionName,
+            ImageUrl = dto.ImageUrl
         };
     }
 
@@ -55,8 +54,8 @@ public class TeamService : GenericService<Team, CreateTeamDTO, UpdateTeamDTO, Re
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateTeamDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateTeamDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

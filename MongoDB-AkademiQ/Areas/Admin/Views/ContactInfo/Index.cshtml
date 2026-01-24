@@ -1,0 +1,249 @@
+@using MongoDB_AkademiQ.DTOs.ContactInfoDTOs
+@model List<ResultContactInfoDTO>
+@{
+    ViewData["Title"] = "İletişim";
+    Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
+}
+
+<div class="flex-1 overflow-y-auto p-8 pb-20">
+    <div class="max-w-7xl mx-auto space-y-8">
+        <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">İletişim Bilgileri</h3>
+                <button onclick="openAddModal()" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">
+                    <span class="material-symbols-outlined text-sm mr-1">add</span>
+                    Yeni Ekle
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700">
+                            <th class="pb-3">Adres</th>
+                            <th class="pb-3">Telefon</th>
+                            <th class="pb-3 text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-700/50">
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-4 text-slate-600 dark:text-slate-400 font-medium">@item.Address</td>
+                                    <td class="py-4 text-slate-600 dark:text-slate-400">@item.PhoneNumber</td>
+                                    <td class="py-4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <button type="button" onclick="viewContactInfo(this)" 
+                                                    data-id="@item.Id"
+                                                    class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">
+                                                <span class="material-symbols-outlined text-sm mr-1">visibility</span>
+                                                Görüntüle
+                                            </button>
+                                            <button type="button" onclick="editContactInfo(this)" 
+                                                    data-id="@item.Id"
+                                                    class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors">
+                                                <span class="material-symbols-outlined text-sm mr-1">edit</span>
+                                                Düzenle
+                                            </button>
+                                            <button type="button" onclick="deleteContactInfo(this)" 
+                                                    data-id="@item.Id"
+                                                    class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+                                                <span class="material-symbols-outlined text-sm mr-1">delete</span>
+                                                Sil
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="3" class="py-8 text-center text-slate-500 dark:text-slate-400">
+                                    Henüz iletişim bilgisi bulunmamaktadır.
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View/Edit Modal -->
+<div id="contactInfoModal" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="p-6 border-b border-slate-200 dark:border-slate-700">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white" id="modalTitle">İletişim Bilgisi Detayları</h3>
+                <button onclick="closeModal()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        </div>
+        <div class="p-6" id="modalContent"></div>
+        <div class="p-6 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
+            <button onclick="closeModal()" class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+                Kapat
+            </button>
+            <button id="saveBtn" onclick="saveContactInfo()" style="display: none;" class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">
+                Kaydet
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    let currentId = null;
+    let isEditMode = false;
+
+    function openAddModal() {
+        isEditMode = true;
+        currentId = null;
+        document.getElementById('modalTitle').textContent = 'Yeni İletişim Bilgisi Ekle';
+        document.getElementById('modalContent').innerHTML = `
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Adres</label>
+                    <textarea id="address" rows="3" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white" placeholder="Adres girin"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Telefon</label>
+                    <input type="text" id="phoneNumber" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white" placeholder="Telefon numarası girin">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">E-posta</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white" placeholder="E-posta adresi girin">
+                </div>
+            </div>
+        `;
+        document.getElementById('saveBtn').style.display = 'block';
+        document.getElementById('contactInfoModal').style.display = 'flex';
+    }
+
+    function viewContactInfo(button) {
+        const id = button.getAttribute('data-id');
+        isEditMode = false;
+        fetch('/Admin/ContactInfo/GetContactInfoDetails?id=' + id)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('modalTitle').textContent = 'İletişim Bilgisi Detayları';
+                    document.getElementById('modalContent').innerHTML = `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Adres</label>
+                                <p class="mt-1 text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap">${data.contactInfo.address}</p>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Telefon</label>
+                                <p class="mt-1 text-sm font-medium text-slate-900 dark:text-white">${data.contactInfo.phoneNumber}</p>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">E-posta</label>
+                                <p class="mt-1 text-sm font-medium text-slate-900 dark:text-white">${data.contactInfo.email}</p>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('saveBtn').style.display = 'none';
+                    document.getElementById('contactInfoModal').style.display = 'flex';
+                }
+            });
+    }
+
+    function editContactInfo(button) {
+        const id = button.getAttribute('data-id');
+        currentId = id;
+        isEditMode = true;
+        fetch('/Admin/ContactInfo/GetContactInfoDetails?id=' + id)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('modalTitle').textContent = 'İletişim Bilgisi Düzenle';
+                    document.getElementById('modalContent').innerHTML = `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Adres</label>
+                                <textarea id="address" rows="3" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">${data.contactInfo.address}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Telefon</label>
+                                <input type="text" id="phoneNumber" value="${data.contactInfo.phoneNumber}" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">E-posta</label>
+                                <input type="email" id="email" value="${data.contactInfo.email}" class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('saveBtn').style.display = 'block';
+                    document.getElementById('contactInfoModal').style.display = 'flex';
+                }
+            });
+    }
+
+    function saveContactInfo() {
+        const address = document.getElementById('address').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const email = document.getElementById('email').value;
+
+        if (!address || !phoneNumber || !email) {
+            Swal.fire('Hata!', 'Lütfen tüm alanları doldurun!', 'error');
+            return;
+        }
+
+        const url = currentId ? '/Admin/ContactInfo/UpdateContactInfo' : '/Admin/ContactInfo/CreateContactInfo';
+        const data = currentId ? { id: currentId, address, phoneNumber, email } : { address, phoneNumber, email };
+
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire('Başarılı!', data.message, 'success').then(() => location.reload());
+            } else {
+                Swal.fire('Hata!', data.message, 'error');
+            }
+        });
+    }
+
+    function deleteContactInfo(button) {
+        const id = button.getAttribute('data-id');
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: 'Bu iletişim bilgisini silmek istediğinize emin misiniz?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Evet, Sil',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('/Admin/ContactInfo/DeleteContactInfo?id=' + id, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire('Başarılı!', data.message, 'success').then(() => location.reload());
+                    } else {
+                        Swal.fire('Hata!', data.message, 'error');
+                    }
+                });
+            }
+        });
+    }
+
+    function closeModal() {
+        document.getElementById('contactInfoModal').style.display = 'none';
+    }
+</script>

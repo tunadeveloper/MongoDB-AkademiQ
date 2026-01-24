@@ -7,29 +7,28 @@ namespace MongoDB_AkademiQ.Services.Categories;
 
 public class CategoryService : GenericService<Category, CreateCategoryDTO, UpdateCategoryDTO, ResultCategoryDTO>, ICategoryService
 {
-    public CategoryService(IDatabaseSettings databaseSettings) 
-        : base(databaseSettings, databaseSettings.CategoryCollection)
+    public CategoryService(IDatabaseSettings settings) : base(settings, settings.CategoryCollection)
     {
     }
 
-    protected override Category MapToEntity(CreateCategoryDTO createDTO)
+    protected override Category MapToEntity(CreateCategoryDTO dto)
     {
         return new Category
         {
-            Name = createDTO.Name,
-            ImageUrl = createDTO.ImageUrl,
-            Description = createDTO.Description
+            Name = dto.Name,
+            Description = dto.Description,
+            ImageUrl = dto.ImageUrl
         };
     }
 
-    protected override Category MapToEntity(UpdateCategoryDTO updateDTO)
+    protected override Category MapToEntity(UpdateCategoryDTO dto)
     {
         return new Category
         {
-            Id = updateDTO.Id,
-            Name = updateDTO.Name,
-            ImageUrl = updateDTO.ImageUrl,
-            Description = updateDTO.Description
+            Id = dto.Id,
+            Name = dto.Name,
+            Description = dto.Description,
+            ImageUrl = dto.ImageUrl
         };
     }
 
@@ -39,8 +38,8 @@ public class CategoryService : GenericService<Category, CreateCategoryDTO, Updat
         {
             Id = entity.Id,
             Name = entity.Name,
-            ImageUrl = entity.ImageUrl,
-            Description = entity.Description
+            Description = entity.Description,
+            ImageUrl = entity.ImageUrl
         };
     }
 
@@ -50,13 +49,13 @@ public class CategoryService : GenericService<Category, CreateCategoryDTO, Updat
         {
             Id = entity.Id,
             Name = entity.Name,
-            ImageUrl = entity.ImageUrl,
-            Description = entity.Description
+            Description = entity.Description,
+            ImageUrl = entity.ImageUrl
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateCategoryDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateCategoryDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

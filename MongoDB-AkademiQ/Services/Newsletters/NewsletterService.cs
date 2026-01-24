@@ -7,25 +7,24 @@ namespace MongoDB_AkademiQ.Services.Newsletters;
 
 public class NewsletterService : GenericService<Newsletter, CreateNewsletterDTO, UpdateNewsletterDTO, ResultNewsletterDTO>, INewsletterService
 {
-    public NewsletterService(IDatabaseSettings databaseSettings) 
-        : base(databaseSettings, databaseSettings.NewsletterCollection)
+    public NewsletterService(IDatabaseSettings settings) : base(settings, settings.NewsletterCollection)
     {
     }
 
-    protected override Newsletter MapToEntity(CreateNewsletterDTO createDTO)
+    protected override Newsletter MapToEntity(CreateNewsletterDTO dto)
     {
         return new Newsletter
         {
-            Email = createDTO.Email
+            Email = dto.Email
         };
     }
 
-    protected override Newsletter MapToEntity(UpdateNewsletterDTO updateDTO)
+    protected override Newsletter MapToEntity(UpdateNewsletterDTO dto)
     {
         return new Newsletter
         {
-            Id = updateDTO.Id,
-            Email = updateDTO.Email
+            Id = dto.Id,
+            Email = dto.Email
         };
     }
 
@@ -47,8 +46,8 @@ public class NewsletterService : GenericService<Newsletter, CreateNewsletterDTO,
         };
     }
 
-    protected override string GetIdFromUpdateDTO(UpdateNewsletterDTO updateDTO)
+    protected override string GetIdFromUpdateDTO(UpdateNewsletterDTO dto)
     {
-        return updateDTO.Id;
+        return dto.Id;
     }
 }

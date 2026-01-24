@@ -7,6 +7,7 @@ using MongoDB_AkademiQ.Services.FAQs;
 using MongoDB_AkademiQ.Services.Messages;
 using MongoDB_AkademiQ.Services.Newsletters;
 using MongoDB_AkademiQ.Services.Products;
+using MongoDB_AkademiQ.Services.References;
 using MongoDB_AkademiQ.Services.Teams;
 using MongoDB_AkademiQ.Settings;
 
@@ -24,16 +25,16 @@ builder.Services.AddScoped<IFAQService, FAQService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IReferenceService, ReferenceService>();
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
 });
 
-// Session yapılandırması
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -41,11 +42,9 @@ builder.Services.AddSession(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

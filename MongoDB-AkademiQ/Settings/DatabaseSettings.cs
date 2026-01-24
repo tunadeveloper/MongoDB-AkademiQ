@@ -13,5 +13,6 @@
         public string TeamCollection { get; set; }
         public string AboutCollection { get; set; }
         public string AdminCollection { get; set; }
+        public string ReferenceCollection { get; set; }
     }
 }
