@@ -1,0 +1,92 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/_adminLayout.cshtml";
+}
+
+<div class="flex-1 overflow-y-auto p-8 pb-20">
+    <div class="max-w-7xl mx-auto space-y-8">
+        <!-- Welcome Section -->
+        <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+            <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                Hoş Geldiniz, @ViewBag.AdminName!
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400">
+                Admin paneline başarıyla giriş yaptınız.
+            </p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Toplam Ürün</p>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white">-</p>
+                    </div>
+                    <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl">
+                        <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 !text-3xl">inventory_2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Kategoriler</p>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white">-</p>
+                    </div>
+                    <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-xl">
+                        <span class="material-symbols-outlined text-green-600 dark:text-green-400 !text-3xl">category</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Mesajlar</p>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white">-</p>
+                    </div>
+                    <div class="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl">
+                        <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-400 !text-3xl">mail</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Aboneler</p>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-white">-</p>
+                    </div>
+                    <div class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-xl">
+                        <span class="material-symbols-outlined text-purple-600 dark:text-purple-400 !text-3xl">group</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="glass-panel rounded-2xl p-6 shadow-sm border border-white dark:border-slate-800">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Hızlı Erişim</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/Admin/Product/Index" class="flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-primary">inventory_2</span>
+                    <span class="font-medium text-slate-900 dark:text-white">Ürünleri Yönet</span>
+                </a>
+                <a href="/Admin/Category/Index" class="flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-primary">category</span>
+                    <span class="font-medium text-slate-900 dark:text-white">Kategorileri Yönet</span>
+                </a>
+                <a href="/Admin/Message/Index" class="flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-primary">mail</span>
+                    <span class="font-medium text-slate-900 dark:text-white">Mesajları Görüntüle</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

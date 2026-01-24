@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using MongoDB_AkademiQ.Services.Abouts;
+using MongoDB_AkademiQ.Services.Admin;
 using MongoDB_AkademiQ.Services.Categories;
 using MongoDB_AkademiQ.Services.ContactInfos;
 using MongoDB_AkademiQ.Services.FAQs;
@@ -22,10 +23,21 @@ builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
 builder.Services.AddScoped<IFAQService, FAQService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
 });
+
+// Session yapılandırması
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -40,6 +52,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseSession();
 app.UseAuthorization();
 
 app.MapStaticAssets();

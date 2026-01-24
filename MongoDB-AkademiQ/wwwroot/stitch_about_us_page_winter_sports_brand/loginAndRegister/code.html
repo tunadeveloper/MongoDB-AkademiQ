@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Login - Winter Sports Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b9dee",
+                        "primary-dark": "#1a8cd8",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e2936",
+                        "text-main-light": "#0d161b",
+                        "text-main-dark": "#e2e8f0",
+                        "text-secondary-light": "#4c799a",
+                        "text-secondary-dark": "#94a3b8",
+                        "border-light": "#cfdde7",
+                        "border-dark": "#334155",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom frosted glass utility since backdrop-blur varies by browser support in some edge cases */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(30, 41, 54, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased transition-colors duration-200">
+<!-- Main Container: Full screen with split layout or centered overlay -->
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0 w-full h-full bg-cover bg-center" data-alt="Snow covered mountain range with clear blue sky" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDASs4xLu3Fq_9lkfnKD1xNZlwwNG_JVj37lhXGSCdcV65E6-U3epDg7pNw_CqoOLxyrcJuxfiItzfmiX5QQRkVHWpId640jH_H2dQeGjvquLD5dT4U4ZqHPhEyKUegdbmsS7gn48A_0ThQ7yeosocikWr2BH4dl920nQ9HCH-X5ekg2rURmq0zmHkVqyv-eMnlJ1lEqX_7mMZa-ZJKaoxuIYnc7b0pbZuFp9pMWkMOMm5pARKYk_IiD5rZjbhylrlRIjkfALozgh4");'>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/40 via-blue-50/20 to-blue-200/30 dark:from-background-dark/80 dark:to-background-dark/60 mix-blend-overlay"></div>
+<!-- Additional dark overlay for dark mode support -->
+<div class="absolute inset-0 bg-white/10 dark:bg-black/40"></div>
+</div>
+<!-- Content Wrapper -->
+<div class="relative z-10 flex flex-1 flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+<!-- Logo Section -->
+<div class="mb-8 flex flex-col items-center gap-3 animate-fade-in-down">
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-blue-500/30">
+<span class="material-symbols-outlined !text-4xl">ac_unit</span>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-white drop-shadow-md">Alpine Admin</h1>
+</div>
+<!-- Login Card -->
+<div class="glass-panel w-full max-w-[440px] rounded-2xl border border-white/50 shadow-2xl dark:border-white/10 dark:shadow-black/50 overflow-hidden">
+<!-- Card Header -->
+<div class="px-8 pt-10 pb-2 text-center">
+<h2 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Welcome Back</h2>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">Enter your credentials to access the portal</p>
+</div>
+<!-- Form Container -->
+<div class="p-8">
+<form action="#" class="flex flex-col gap-5">
+<!-- Email Field -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-text-main-light dark:text-text-main-dark flex items-center gap-2" for="email">
+<span class="material-symbols-outlined !text-[18px] text-text-secondary-light dark:text-text-secondary-dark">mail</span>
+                                Email Address
+                            </label>
+<input class="form-input block w-full rounded-xl border border-border-light bg-surface-light/50 px-4 py-3 text-text-main-light placeholder:text-text-secondary-light/70 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-border-dark dark:bg-background-dark/50 dark:text-white dark:focus:border-primary dark:placeholder:text-text-secondary-dark/50 transition-all duration-200" id="email" placeholder="name@wintersports.com" type="email"/>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="text-sm font-medium text-text-main-light dark:text-text-main-dark flex items-center gap-2" for="password">
+<span class="material-symbols-outlined !text-[18px] text-text-secondary-light dark:text-text-secondary-dark">lock</span>
+                                    Password
+                                </label>
+<a class="text-xs font-medium text-primary hover:text-primary-dark transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="form-input block w-full rounded-xl border border-border-light bg-surface-light/50 px-4 py-3 pr-10 text-text-main-light placeholder:text-text-secondary-light/70 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-border-dark dark:bg-background-dark/50 dark:text-white dark:focus:border-primary dark:placeholder:text-text-secondary-dark/50 transition-all duration-200" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary-light hover:text-primary dark:text-text-secondary-dark" type="button">
+<span class="material-symbols-outlined !text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Remember Me Checkbox -->
+<div class="flex items-center gap-2">
+<input class="h-4 w-4 rounded border-border-light text-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark" id="remember-me" type="checkbox"/>
+<label class="text-sm text-text-secondary-light dark:text-text-secondary-dark select-none" for="remember-me">Keep me logged in</label>
+</div>
+<!-- Submit Button -->
+<button class="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-base font-bold text-white shadow-lg shadow-blue-500/25 transition-all duration-200 hover:bg-primary-dark hover:shadow-blue-500/40 active:scale-[0.98]">
+<span>Log In</span>
+<span class="material-symbols-outlined !text-[20px]">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Footer / Help Link -->
+<div class="border-t border-border-light/50 bg-gray-50/50 p-4 text-center dark:border-border-dark/50 dark:bg-white/5">
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                        Having trouble? <a class="font-medium text-primary hover:underline" href="#">Contact Support</a>
+</p>
+</div>
+</div>
+<!-- Bottom Links -->
+<div class="mt-8 flex gap-6 text-sm font-medium text-white/80 drop-shadow-sm">
+<a class="hover:text-white transition-colors" href="#">Return to Store</a>
+<span class="text-white/40">•</span>
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+</body></html>

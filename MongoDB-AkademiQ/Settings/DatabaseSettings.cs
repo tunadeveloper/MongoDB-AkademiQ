@@ -12,5 +12,6 @@
         public string MessageCollection { get; set; }
         public string TeamCollection { get; set; }
         public string AboutCollection { get; set; }
+        public string AdminCollection { get; set; }
     }
 }

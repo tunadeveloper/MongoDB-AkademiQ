@@ -16,6 +16,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Services\Admin\" />
     <Folder Include="Services\ContactInfos\" />
     <Folder Include="Services\FAQs\" />
     <Folder Include="Services\Messages\" />
